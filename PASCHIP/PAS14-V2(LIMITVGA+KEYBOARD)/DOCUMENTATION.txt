@@ -1,0 +1,109 @@
+				Using Functions With PAS-##
+
+Currently Version 14.2, only has basic ASM to HEX for the K ROM
+and M ROM. The first step to create a list of functions you want,
+and a map of how they will run (first to last, including jumps).
+
+For an example, The first program written (clearsegloc.hex?), 
+requires multiple functions, listed below. Each function will 
+always point to either another fuction, or the end of the entire 
+code/script.
+
+Ex: The first function, [INIT], will set all 8 bit registers to 0. 
+	Once these commands have been finished, the function will 
+	end, and begin the next function; [CLEAR EQ FLAG]. And so
+	on.
+	
+It is not of importance how these functions are written up, since 
+the end product will always be in HEX format for ROMS. All that 
+matters is that there is a way out of the script/code and all functions
+are all connected.
+
+
+
+clearsegloc.hex goes as follows. Functions are in order.
+
+SUB-Function 1 (INIT) Will set all 8bit registers to 0, then continue
+				  to the 2nd function.
+
+SUB-Function 2 (CLEAR EQUAL FLAG) Clears the EQUAL flag as error protection.
+
+SUB-Function 3 (MAIN COMPARE) Sets A to 0x3F and compares B to A. 
+If A is equal to B, the EQUAL flag is set. 
+
+SUB-Function 4 (BRANCH IF EQUAL) Firstly, set X and Y to COMP_END. Then set
+the K-BRANCH register and finally, branch if EQUAL flag is set. if not set
+continue.
+
+SUB-Function 5 (SET SEGLOC) Sets X and Y to 0x00, SEGLOC's with X and Y.
+
+SUB-Function 6 (ADD 1 TO B) Sets A to 0x01 and ADDS A to B. Then transfers
+the sum from A to B.
+
+SUB-Function 7 (BRANCH BACK TO MAIN COMPARE) This will set X and Y to COMP_RET
+and manually branch back to COMP_RET after setting K-BRANCH to X and Y.
+
+SUB-Function 8 (END) This simply flags the end of the function.
+
+
+
+Note how these are SUB-Functions that make up the end product, or the
+function.
+
+
+
+
+NEXT TO DO
+
+check clearsegloc.hex
+finish documentation
+make map
+work on 2nd function for program.
+
+INNER WORKINGS OF AN OPCODE
+
+0
+0	(COMP_START)
+0
+0
+1000007
+1000008
+1000009
+100000A
+0
+0	(COMP_RET)
+0
+0
+3E
+0
+1003F07
+31
+0
+0
+1000009 ?
+100000A ?
+5
+0
+50
+0
+0
+1000009
+100000A
+61
+0
+0
+1000107
+22
+55
+0
+0
+1000009 ?
+100000A ?
+5
+0
+0
+6
+0
+0	(COMP_END) 
+0
+0

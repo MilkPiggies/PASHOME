@@ -1,0 +1,16 @@
+currently implelmented:
+put mov get 
+labels 
+goto / goto if
+
+
+STO is next to work on, storing a register in memory
+
+
+
+Continue the info file for tutorial on how to use.
+
+
+
+CCBUG001: you can only goto a label that is above the 
+	  goto call.

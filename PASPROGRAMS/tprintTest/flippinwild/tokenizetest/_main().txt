@@ -1,0 +1,4 @@
+_main() {
+	tprint(+text);
+	return(1);
+}~

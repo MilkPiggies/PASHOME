@@ -1,0 +1,50 @@
+//SANDBOX FOR PAS COMPILER
+//MOLDYBREAD 01/06/2025
+
+
+
+// I have no clue how to organize this shit. Below is an example
+// program including a telnet print library. 
+
+====
+#include tprint lib? < also make tprint.lip(lib)
+//make variables?
+
+_main{
+	tprint('TEST');		//uses the tprint library (telsend)
+	return 0;			//end this function
+}
+
+//This will create a string out of what tprint will print
+//This string is saved and later accessed by the parser.
+//s1 = 'T', s2 = 'E', etc...
+//Also count how long the string is (sLen = 4)
+
+_tprint(char argv) {
+	sLen = 0;
+	
+:getLen
+	if(argv[sLen] != '\0') {
+			sLen++;
+	}
+	else{
+		goto :endLen
+	}
+	goto :getLen
+	
+:endLen
+	sLen++;
+	return(0);
+}
+
+//The code above will check the argv(eg, TEST) string and 
+//continue adding 1 to sLen until it reaches a '\0'.
+====
+
+
+
+
+// It has to be when the program is being compiled
+// The compiler will see _tprint and check the length.
+// BEFORE finishing compilation. Needs to store it somewhere
+// in memory. Temp location for string is data.h

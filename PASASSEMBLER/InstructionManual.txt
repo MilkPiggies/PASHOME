@@ -1,0 +1,21 @@
+## This is the Instruction Manual for the PAS-ASSEMBLER
+## This will take filename.pa and transform it into filename.pas
+
+## filename.pa should contain Assembly Code, either handmade
+## or made from the PAS-COMPILER. At this time, The compiler
+## is not yet made. The date is (2025/05/19). Made by MoldyBread.
+
+## This Assembler is based off PAS-COMPILER-V1 (2024/11/27)~
+
+
+First things first, Set the needed variables.
+
+
+
+
+
+
+
+
+specify filesize(lines[z]) and first line(x)
+

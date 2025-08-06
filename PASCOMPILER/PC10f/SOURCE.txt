@@ -1,0 +1,18 @@
+put(@A, #0069)
+mov(@A, #000B)
+put(@A, #0420)
+mov(@X, #000Y)
+put(@B, #0666)
+:label
+mov(@X, #000J)
+get(@A, #0100)
+mov(@Z, #000R)
+mov(@I, #000E)
+get(@F, #0420)
+:5letr
+nop
+goto 5letr
+nop
+goto if label
+:lstts
+goto lstts

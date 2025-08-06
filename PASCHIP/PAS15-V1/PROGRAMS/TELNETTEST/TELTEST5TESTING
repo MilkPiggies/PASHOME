@@ -1,0 +1,81 @@
+0
+50
+0
+2007
+1003608
+31
+1509
+140A 
+0
+50
+0
+0
+2007
+1000108
+22
+200D
+0
+1109
+100A
+5
+0
+6
+0
+0
+0
+0
+1000A09
+69
+0
+1000809
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+0
+0F09
+0E0A
+5
+0
+6
+
+
+(instead of interupt)
+
+(check if $31 is above or below 0x40)
+(if below, sub 0x30, if above branch)
+
+(branch back after $31)
+(check if $32 is above or below 0x40)
+(if below, sub 0x30, if above branch)
+
+(branch back after $32)
+(check if $33 is above or below 0x40)
+(if below, sub 0x30, if above branch)
+
+(branch back after $33)
+(check if $34 is above or below 0x40)
+(if below, sub 0x30, if above branch)
+
+
+(LSL $31 and $33 by 0x04)
+(add $31 and $32)
+(store on $4C)
+(add $33 and $34)
+(store on $4D)

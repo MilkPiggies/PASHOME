@@ -1,0 +1,4 @@
+put(20, A)
+mov(A, X)
+mov(01, 30)
+sto(A, 15, R)

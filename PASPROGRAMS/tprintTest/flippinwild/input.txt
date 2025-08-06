@@ -1,0 +1,60 @@
+testing test
+thisisatest
+_TEST() {
+	testfunction(1);
+	if(testfunction == 1) {
+		correct();
+	{
+}~
+
+_TExt() {
+	textfunction();
+}~
+
+also more testing text
+texting test
+
+
+
+
+_tprint(char argv) {
+	sLen = 0;
+	sPos = 0;
+	
+	
+//First get the length\\	
+:getLen
+	if(argv[sLen] != '\0') {
+		sLen++;
+	}
+	else {
+		goto :endLen		//Could replace with while()\\
+	}
+	goto :getLen
+	
+:endLen
+	return(0);
+	}
+	
+
+//Then Send Each Used Char (s0-s3...) according to sLen\\
+:sendTel
+	if(sPos != sLen) {
+		sendTel(s[sPos]);
+		sPos++;
+		goto :sendTel
+	}
+	else {
+		goto :endTel
+	}
+
+:endTel
+return(0);	
+}~
+
+
+
+_main() {
+	tprint(+text);
+	return(1);
+}~

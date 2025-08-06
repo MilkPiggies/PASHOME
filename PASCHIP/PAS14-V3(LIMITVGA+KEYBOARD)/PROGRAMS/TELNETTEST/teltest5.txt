@@ -1,0 +1,82 @@
+:start
+set $20 to 0x30
+print "Ready: "
+
+
+
+:return
+interupt 
+(wait for user to press a key)
+store $20 on Y
+store 0x00 on X
+load X+Y to Z 
+recieve telnet data
+send telnet data
+toggle zaddress
+store telnet data with the help of ZADDR
+toggle zaddress
+
+
+
+:check_exitkey
+(checks if the last key pressed was the exitkey)
+toggle zaddress
+load $Z on A
+toggle zaddress
+load "EXIT_KEY" on B
+compare A and B
+set branch to :exitkey
+if equal, branch to :exitkey
+else continue
+
+
+
+:check_endaddr
+(checks if the current address is the end address)
+load $20 on A
+load 0x36 on B
+compare A and B 
+set branch to :endaddr 
+if equal, branch to :endaddr
+else continue
+
+
+
+:no_check
+(if all checks do not pass, continue here)
+store $20 on A
+load 0x01 on B
+add A and B
+store A on $20
+set branch to :return
+branch to :return
+
+
+
+:endaddr
+(gathers $30 - $36 and forms a command we send to MRAM)
+(the address for MRAM is on $21)
+newline
+backspace x20
+set branch to :start
+branch to :start
+
+
+:exitkey
+newline
+backspace x20
+print "DONE "
+go into infinite loop
+
+
+
+
+--------------------REAL----------------------
+:endaddr
+(store 0x30 - 0x36 to A,B,C)
+(and store on MRAM with the addr of X($21))
+
+
+
+:exitkey
+

@@ -1,0 +1,17 @@
+ECHO (CONTENT)
+BANK (CONTENT)
+LOAD (UNTIL)
+RUN
+
+[UNKNOWN COMMAND]
+
+
+
+
+FILESYSTEM?
+load a bank containing the filesystem setup
+eg: change > to /, wait for user to enter "CREATE (filename)"
+	make prompt for creating a file
+	
+make command for printing the file
+eg: PRINT (filename)

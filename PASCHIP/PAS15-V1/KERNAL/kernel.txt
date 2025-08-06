@@ -1,0 +1,8 @@
+ECHO is done.
+LOAD is next. (load data from EXT to MRAM)
+
+
+make a list of programs to bake into kernel.
+make subroutines/threads?
+
+

@@ -1,0 +1,32 @@
+:label creation with renewed storage registers/arrays.
+
+goto must first decode what b location we point to.
+eg if g[b] is 5letr, and we decoded label, they do not
+match, so we increment b.
+
+This will be done in loops until another pointer reaches
+a wanted number (so we dont infinitly loop ourselves.)
+	^ although, once we reach \n its over.
+
+
+
+
+REMEMBER TO SUBTRACT "goto if " OR "goto " FOR EACH GOTO 
+STATEMENT WE ENCOUNTER, WE ONLY WANT TO COMPARE TO THE LABEL
+ITSELF, 
+
+
+
+	get the line 	(which contains a goto + label)
+				compare label with u[b]
+					if they are equal, stop loop
+					else add one to b
+					then goto :loop?
+
+
+
+First lets do just goto.
+
+so we get the line that has goto on it, we need to
+isolate the labels, this should be easy as we can just
+sscanf a variable, or pointer to the label name.

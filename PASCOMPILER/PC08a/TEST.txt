@@ -1,0 +1,40 @@
+START:
+
+set tji to l
+set ji to line_count_fl (max number of fl lines)
+
+set eefl to line_count_fl - line_count (difference)
+set eefl to eefl x 3
+
+LOOP:
+
+set v[FL[ji] to itself plus efl and eefl (current offset)
+seek to current offset
+jq = FL[ji]
+fprintf jq
+
+END:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

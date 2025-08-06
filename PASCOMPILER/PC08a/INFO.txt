@@ -1,0 +1,124 @@
+PAS PROGRAMMING LANGUAGE INFORMATION
+BY: MoldyBread 29/05/2025
+
+
+*/ When creating programs for the PAS system, Theres Several things to keep in mind.
+The source file (Hereby referenced as x.p), is what the end user will write. Look at 
+them like .c files. In the x.p, the user can create high level programs for the system.
+
+In this file, you will learn how to create these source files, and prepare them  for
+the compiler.
+
+
+
+
+
+
+
+1. Scan though x.p for underscores(_name)
+	- These are functions, we keep score of the % with an int(?)
+	
+2. Then scan though each function individually and lex them
+	- This is where the Lexer comes into play
+	
+	
+	
+	EX:
+		[compiler info]			//ignored
+			//this is where information like size,
+			//data, and locations will be put.
+		!data1
+		!data2
+		!data3
+		
+		[global vars below]		//ignored
+			//this is for variables that every
+			//function in this file can use.
+		+example = 30
+		+test = 0x20
+		
+		[functions]				//ignored
+			//this is where the functions you write
+			//will be stored.
+		_main {
+		puts #6 @0
+		puts #D @1
+		}
+	EX;	
+		
+		
+As you can see from the above, there are several things infront of the text,
+EG: !, +, _. And @, #, $.
+
+The ! will define compiler data.
+The + will define global variables.		--
+The _ will define function/functionNames
+
+The @ will define registers
+The # will define direct values
+The $ will define memory addresses
+
+The // Will define comments
+
+
+
+
+
+## LEXICAL SCANNING
+BASIC OPERATORS:	defs.h (tokenop stored in this struct)
+	TIMES('*'), DIVIDE('/'), ADD('+'), SUB('-')
+	DECIMAL('0' ~ '9')
+	
+	
+TOKEN STRUCTURE:	defs.h (tokenda stored in this struct)
+	T_STAR, T_SLASH, T_PLUS, T_MINUS, T_INTLIT
+							
+
+
+
+translate _name context to .pa
+
+put 						[Load]
+mov						[Transfer]
+sto						[Store]
+
+add/sub/mul/div (with carry on adc and sbc)	[Algorithmic]
+not/and/nand/or/nor/xor/xnor			[Logical]'
+
+
+
+[ !R defines DirectAddress (get number from code)   ]
+[ !M defines MemoryAddress (get number from memory) ]
+
+put (#3, @A)
+LDA $# 0003
+
+get (#24, @X)
+LDX $ 0024
+
+
+
+put(data, register/address, location)
+first check location, location decides register/address
+...
+
+
+
+translate each .temp file. eg if puts(...), then LDA ... 0x....
+
+we also need to finish the command, which has to do with the info
+within the (...)'s
+So for each line in each temp file, we check whats in side of the (...)'s
+with the information stored on a register we compare them with lists.
+
+The first entry (#....) is the data/location.
+The second entry (@.) is the register location.
+
+
+
+
+
+
+		
+
+

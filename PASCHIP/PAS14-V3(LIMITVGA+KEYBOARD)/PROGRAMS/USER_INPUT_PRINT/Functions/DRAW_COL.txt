@@ -1,0 +1,18 @@
+### SET FG=WHITE, BG=BLUE ###
+
+
+
+add wanted color to stack? (for diff colors)
+
+
+//MAIN
+NOP $  0x00
+
+	LDB $# 0x01		//set B to 1 (white)
+	SEFGCOL $ 0x00 		//send B to FG 
+
+	LDB $# 0x06 		//set B to 6 (blue)
+	SEFGCOL $ 0x00		//send B to BG
+
+
+

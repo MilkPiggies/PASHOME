@@ -1,0 +1,447 @@
+PAS PROGRAMMING LANGUAGE INFORMATION
+BY: MoldyBread 29/05/2025
+
+
+*/ When creating programs for the PAS system, Theres Several things to keep in mind.
+The source file (Hereby referenced as x.p), is what the end user will write. Look at 
+them like .c files. In the x.p, the user can create high level programs for the system.
+
+In this file, you will learn how to create these source files, and prepare them  for
+the compiler.
+
+
+
+
+
+
+
+1. Scan though x.p for underscores(_name)
+	- These are functions, we keep score of the % with an int(?)
+	
+2. Then scan though each function individually and lex them
+	- This is where the Lexer comes into play
+	
+	
+	
+	EX:
+		[compiler info]			//ignored
+			//this is where information like size,
+			//data, and locations will be put.
+		!data1
+		!data2
+		!data3
+		
+		[global vars below]		//ignored
+			//this is for variables that every
+			//function in this file can use.
+		+example = 30
+		+test = 0x20
+		
+		[functions]				//ignored
+			//this is where the functions you write
+			//will be stored.
+		_main {
+		puts #6 @0
+		puts #D @1
+		}
+	EX;	
+		
+		
+As you can see from the above, there are several things infront of the text,
+EG: !, +, _. And @, #, $.
+
+The ! will define compiler data.
+The + will define global variables.		--
+The _ will define function/functionNames
+
+The @ will define registers
+The # will define direct values
+The $ will define memory addresses
+
+The // Will define comments
+
+
+
+
+
+## LEXICAL SCANNING
+BASIC OPERATORS:	defs.h (tokenop stored in this struct)
+	TIMES('*'), DIVIDE('/'), ADD('+'), SUB('-')
+	DECIMAL('0' ~ '9')
+	
+	
+TOKEN STRUCTURE:	defs.h (tokenda stored in this struct)
+	T_STAR, T_SLASH, T_PLUS, T_MINUS, T_INTLIT
+							
+
+
+
+translate _name context to .pa
+
+put 						[Load]
+mov						[Transfer]
+sto						[Memory/In]
+get						[Memory/Out]
+
+add/sub/mul/div (with carry on adc and sbc)	[Algorithmic]
+not/and/nand/or/nor/xor/xnor			[Logical]'
+
+
+
+[ !R defines DirectAddress (get number from code)   ]
+[ !M defines MemoryAddress (get number from memory) ]
+
+
+
+put (#3, @A)
+LDA $# 0003
+
+get (#24, @X)
+LDX $ 0024
+
+
+
+put(data, register/address, location)
+first check location, location decides register/address
+...
+
+
+
+translate each .temp file. eg if put(...), then LDA ... 0x....
+
+we also need to finish the command, which has to do with the info
+within the (...)'s
+So for each line in each temp file, we check whats in side of the (...)'s
+with the information stored on a register we compare them with lists.
+
+The first entry (#....) is the data/location.
+The second entry (@.) is the register location.
+
+
+//xyz
+i have .temp files, in these files there are lines with letters then 
+a ( with characters separated by commas [,] and closing with ). within 
+these (...)'s there are two important things, one starts with #, 
+another starts with @. For these you must keep track of the 
+character(s) after the # and the @. 
+
+example: If what you see is put(#3, @A) you must firstly add the character 
+after @ to the corresponding line in the .pa file with the corresponding 
+filename, and also add 3 to the corresponding line in the .pa file with the 
+corresponding filename.
+
+do this for each .temp file 
+
+
+
+
+//xyz3
+there are files that have the filetype of .temp, and files that
+have the filetype of .pa.
+
+for each file that has the filetype of .temp, scan if for instances
+of the word "put" at the begining of the line. keep track of this line_number.
+within that line there will be an "@" and a character after it.
+copy that character and write it to the end of the line in the corresponding .pa file, which is the line number
+you kept track of. so that if the line said "LD", if the character after the @ was B,
+then it should now say "LDB"
+
+be sure you write to the correct line in the .pa files, the line you write to
+should correspond to the line_number variable
+
+
+
+
+
+
+//xyz4
+
+
+
+
+
+
+
+
+
+
+write a function called process_extra_put_reg
+this function will check every file in the current 
+directory and for each file with the filetype .temp
+it will scan every line in those files that have
+a filetype of .temp for a line that starts with
+put. for each line that starts with put, remember 
+the line number, and copy the character after the @ symbol 
+on that line, now append that character to the same line number 
+in a file with the same name as the current .temp file, but 
+remove the .temp and replace it with .pa. this file will 
+already exist.
+
+
+
+
+
+For each FL[i] that is valid (specified by lclf), go to the end of the line 
+determined by FL[i] in the file called _func.pa, and print the variable that 
+starts with "REG" and ends in the same number as the value of the current FL[i].
+
+So if the file _func.pa looks like this:
+LD
+T
+ST
+G
+LD
+
+And FL[0] is 0, Then take the word REG, add the current value of FL[0] to 
+the word REG, so we use the variable REG0 instead of just REG. If FL[0] was 
+2, then we would use REG2.
+
+These variables (REG0, REG1, etc...) have a character value (A, B, C, etc...).
+We then print this to the file _func.pa on the line that matches the number stored 
+on the current FL[i], so if i is 0, then we print to the first (0) line.
+
+Then the finalized file _func.pa will look like this:
+LDA
+T
+ST
+G
+LD
+
+
+
+
+
+
+
+
+open file
+fgets on tcbuf (test character buffer)
+
+for each character that isint \n, add one to a counter
+store the end counter value elsewhere.
+
+
+
+
+
+
+
+	while ((tc = fgetc(tcfp)) != EOF) {
+		printf("%c", tc);
+		
+		for (ti < tm; ti++;) {
+			v[ti] = tcfp
+		}
+		
+	}
+	fclose(tcfp);
+
+
+
+
+
+
+
+
+
+
+
+// Penis Music
+long *line_fl = malloc(line_count_fl * sizeof(long));
+
+    createLineArray(line_count_fl, FL, line_fl);
+	
+    // Print the byte offsets for verification
+    for (int i = 0; i < line_count_fl; i++) {
+        printf("Line %d starts at byte offset: %ld\n", FL[i], line_fl[i]);
+    }
+
+    //free(line_fl);
+
+
+ 
+for (int i = 0; i < line_count_fl; i++) {
+	line_fl[i] = line_fl[i] + 2;
+}
+
+// Penis House
+for (int i = 0; i < line_count_fl; i++) {
+    g = FL[i];  // Assign FL[i] to g
+    
+    printf("FL[%d] = %d, REG[%d] = %c\n", i, FL[i], g, REG[g][0]);
+    
+    fseek(fpfl, line_fl[i], SEEK_SET);
+    fprintf(fpfl, "FL[%d] = %d, REG[%d] = %c\n", i, FL[i], g, REG[g] [0]);
+}
+
+// CURRENT: Prints each used FL[i] with the corresponding REG[g]
+
+// Continue the above with moving the said REG[g]'s to the 
+// _func.pa file on the line number matching said FL[i]
+
+
+
+
+
+
+
+
+
+
+
+
+v[g] where g is the value of FL[j] and j is everything below lcfl
+
+
+set j = 0;
+while j < lcfl
+
+g = FL[j]
+print v[g]
+
+
+j++
+
+	
+
+
+
+
+
+
+
+label1:
+
+update (while that reloads correct the v array)
+
+seek to correct location according to the v array pointed by FL array.
+
+
+
+
+
+
+
+ji = 3;
+
+v[ji] = v[ji] + 2;
+fseek(fpfl2, v[ji], SEEK_SET);
+jq = FL[ji];
+fprintf(fpfl2, "%c\r", REG[jq][0]);
+
+
+
+
+
+
+for every file with the filetype of .temp, for every line in those files, translate the lines with these rules:
+If the line starts with "put" then the character after the @ will be put on the corresponding line in the file with the same name but the filetype of .pa
+
+When you write to the corresponding .pa file, be sure to write to the corresponding line you read from the .temp file. So if you read A from line 0 in a .temp file, put the A on line 0 in the .pa file.
+
+
+the .pa files already exist.
+automatically detect which files to use.
+the function is named process_extra_put_reg
+
+Do not create, rename or remove any files. all files needed are already here.
+
+add an example main function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+while (ji < line_count_fl) {
+
+	jq = FL[ji];
+	fseek(fpfl2, v[jq], SEEKSET);
+	fprintf(fpfl2, "%c\r", REG[jq][0]);
+
+}
+
+goto goto1;
+
+test
+
+
+
+
+init efl and eefl. (need to make eefl 3x the difference between tji & ji)
+
+set tji to whatever l(totallinecount) is.
+set ji to whatever lcfl(linecountfl) is.
+
+for each pass:
+
+
+
+
+set offset (v[FL[ji] + efl + eefl)
+
+fseek(v[FL[ji])
+jq = FL[ji]
+fprintf(reg[jq][0])
+
+if tji != FL[ji]: efl=1, eefl-3
+if tji == FL[ji]: efl-1, ji--
+tji--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+starts at + 1, -1 for each line that is 'LD'
+When a line doesnt contain 'LD', We reset it to 1. 
+(init a var to 1) [vr]
+
+lines containing 'LD' are specified by FL[i], where i is < lcfl
+
+AND when a line doesnt contain 'LD', negate 3 from eefl (extra extra FL)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MAKE PC08b
+
+
+
+
+
+
+
+		
+
+

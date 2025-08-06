@@ -1,0 +1,135 @@
+### CODE TO CLEAR SEGLOC TO 0's ###
+
+
+
+
+
+
+//INIT
+NOP $  0x00
+
+	//SET A TO 0
+	LDA $# 0x00
+	
+	//SET B TO 0
+	LDB $# 0x00
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+
+
+
+//MAIN COMPARE
+NOP $  0x00
+	
+	//SET A TO 3F
+	LDA $# 0x3F
+	
+	//COMPARE A AND B AND SET FLAG
+	CMP $  0x00
+	
+
+
+//BRANCH IF EQUAL
+NOP $  0x00	
+	
+	//SET X TO (1/COMP_END)
+	LDX $# //END1
+	
+	//SET Y TO (2/COMP_END)
+	LDY $# //END2
+	
+	//SET KERNEL BRANCH
+	SBRK $ 0x00
+	
+	//BRANCH IF EQUAL FLAG SET
+	NOP $  0x00	
+	BEQ $  0x00
+	
+	
+	
+//SET SEGLOC
+NOP $  0x00	
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+	
+	//SET SEGLOC
+	SEGLOC $ 0x00
+	
+	
+	
+//ADD 1 TO B
+NOP $  0x00	
+
+	//SET A TO 1
+	LDA $# 0x01
+	
+	//ADD A AND B
+	ADD $  0x00
+	
+	//TRANSFER A TO B
+	TAB $  0x00
+	
+
+
+//BRANCH BACK TO MAIN COMPARE
+NOP $  0x00	
+
+	//SET BRANCH BACK
+		//SET X TO (1/COMP_RET)
+		LDX $# //MAINCOMPARE1
+		
+		//SET Y TO (2/COMP_RET)
+		LDY $# //MAINCOMPARE2
+		
+		//SET KERNEL BRANCH
+		SBRK $  0x00
+		
+	//BRANCH BACK
+	NOP $  0x00
+	BR $  0x00
+	
+	
+	
+//END
+NOP $  0x00
+
+
+
+### HEX CODE ###
+0
+1000007
+1000008
+1000009
+100000A
+0
+1003F07
+31
+0
+?
+?
+5
+0
+50
+0
+1000009
+100000A
+61
+0
+1000107
+22
+55
+0
+?
+?
+5
+0
+6
+0

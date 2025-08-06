@@ -1,0 +1,4 @@
+_TEST()
+_TExt()
+_tprint(char
+_main()

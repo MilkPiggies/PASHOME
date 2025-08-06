@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>one.dig</elementName>
+      <elementAttributes/>
+      <pos x="840" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>ROM</elementName>
+      <elementAttributes>
+        <entry>
+          <string>AddrBits</string>
+          <int>10</int>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>24</int>
+        </entry>
+        <entry>
+          <string>Data</string>
+          <data>3f3f3f,3f3f06,3f3f5b,3f3f4f,3f3f66,3f3f6d,3f3f7d,3f3f07,3f3f7f
+,3f3f6f,3f063f,3f0606,3f065b,3f064f,3f0666,3f066d,3f067d,3f0607
+,3f067f,3f066f,3f5b3f,3f5b06,3f5b5b,3f5b4f,3f5b66,3f5b6d,3f5b7d
+,3f5b07,3f5b7f,3f5b6f,3f4f3f,3f4f06,3f4f5b,3f4f4f,3f4f66,3f4f6d
+,3f4f7d,3f4f07,3f4f7f,3f4f6f,3f663f,3f6606,3f665b,3f664f,3f6666
+,3f666d,3f667d,3f6607,3f667f,3f666f,3f6d3f,3f6d06,3f6d5b,3f6d4f
+,3f6d66,3f6d6d,3f6d7d,3f6d07,3f6d7f,3f6d6f,3f7d3f,3f7d06,3f7d5b
+,3f7d4f,3f7d66,3f7d6d,3f7d7d,3f7d07,3f7d7f,3f7d6f,3f073f,3f0706
+,3f075b,3f074f,3f0766,3f076d,3f077d,3f0707,3f077f,3f076f,3f7f3f
+,3f7f06,3f7f5b,3f7f4f,3f7f66,3f7f6d,3f7f7d,3f7f07,3f7f7f,3f7f6f
+,3f6f3f,3f6f06,3f6f5b,3f6f4f,3f6f66,3f6f6d,3f6f7d,3f6f07,3f6f7f
+,3f6f6f,63f3f,63f06,63f5b,63f4f,63f66,63f6d,63f7d,63f07,63f7f
+,63f6f,6063f,60606,6065b,6064f,60666,6066d,6067d,60607,6067f,6066f
+,65b3f,65b06,65b5b,65b4f,65b66,65b6d,65b7d,65b07,65b7f,65b6f,64f3f
+,64f06,64f5b,64f4f,64f66,64f6d,64f7d,64f07,64f7f,64f6f,6663f,66606
+,6665b,6664f,66666,6666d,6667d,66607,6667f,6666f,66d3f,66d06,66d5b
+,66d4f,66d66,66d6d,66d7d,66d07,66d7f,66d6f,67d3f,67d06,67d5b,67d4f
+,67d66,67d6d,67d7d,67d07,67d7f,67d6f,6073f,60706,6075b,6074f,60766
+,6076d,6077d,60707,6077f,6076f,67f3f,67f06,67f5b,67f4f,67f66,67f6d
+,67f7d,67f07,67f7f,67f6f,66f3f,66f06,66f5b,66f4f,66f66,66f6d,66f7d
+,66f07,66f7f,66f6f,5b3f3f,5b3f06,5b3f5b,5b3f4f,5b3f66,5b3f6d,5b3f7d
+,5b3f07,5b3f7f,5b3f6f,5b063f,5b0606,5b065b,5b064f,5b0666,5b066d
+,5b067d,5b0607,5b067f,5b066f,5b5b3f,5b5b06,5b5b5b,5b5b4f,5b5b66
+,5b5b6d,5b5b7d,5b5b07,5b5b7f,5b5b6f,5b4f3f,5b4f06,5b4f5b,5b4f4f
+,5b4f66,5b4f6d,5b4f7d,5b4f07,5b4f7f,5b4f6f,5b663f,5b6606,5b665b
+,5b664f,5b6666,5b666d,5b667d,5b6607,5b667f,5b666f,5b6d3f,5b6d06
+,5b6d5b,5b6d4f,5b6d66,5b6d6d,5b6d7d,5b6d07,5b6d7f,5b6d6f,5b7d3f
+,5b7d06,5b7d5b,5b7d4f,5b7d66,5b7d6d,5b7d7d,5b7d07,5b7d7f,5b7d6f
+,5b073f,5b0706,5b075b,5b074f,5b0766,5b076d,5b077d,5b0707,5b077f
+,5b076f,5b7f3f,5b7f06,5b7f5b,5b7f4f,5b7f66,5b7f6d,5b7f7d,5b7f07
+,5b7f7f,5b7f6f,5b6f3f,5b6f06,5b6f5b,5b6f4f,5b6f66,5b6f6d,5b6f7d
+,5b6f07,5b6f7f,5b6f6f,4f3f3f,4f3f06,4f3f5b,4f3f4f,4f3f66,4f3f6d
+,4f3f7d,4f3f07,4f3f7f,4f3f6f,4f063f,4f0606,4f065b,4f064f,4f0666
+,4f066d,4f067d,4f0607,4f067f,4f066f,4f5b3f,4f5b06,4f5b5b,4f5b4f
+,4f5b66,4f5b6d,4f5b7d,4f5b07,4f5b7f,4f5b6f,4f4f3f,4f4f06,4f4f5b
+,4f4f4f,4f4f66,4f4f6d,4f4f7d,4f4f07,4f4f7f,4f4f6f,4f663f,4f6606
+,4f665b,4f664f,4f6666,4f666d,4f667d,4f6607,4f667f,4f666f,4f6d3f
+,4f6d06,4f6d5b,4f6d4f,4f6d66,4f6d6d,4f6d7d,4f6d07,4f6d7f,4f6d6f
+,4f7d3f,4f7d06,4f7d5b,4f7d4f,4f7d66,4f7d6d,4f7d7d,4f7d07,4f7d7f
+,4f7d6f,4f073f,4f0706,4f075b,4f074f,4f0766,4f076d,4f077d,4f0707
+,4f077f,4f076f,4f7f3f,4f7f06,4f7f5b,4f7f4f,4f7f66,4f7f6d,4f7f7d
+,4f7f07,4f7f7f,4f7f6f,4f6f3f,4f6f06,4f6f5b,4f6f4f,4f6f66,4f6f6d
+,4f6f7d,4f6f07,4f6f7f,4f6f6f,663f3f,663f06,663f5b,663f4f,663f66
+,663f6d,663f7d,663f07,663f7f,663f6f,66063f,660606,66065b,66064f
+,660666,66066d,66067d,660607,66067f,66066f,665b3f,665b06,665b5b
+,665b4f,665b66,665b6d,665b7d,665b07,665b7f,665b6f,664f3f,664f06
+,664f5b,664f4f,664f66,664f6d,664f7d,664f07,664f7f,664f6f,66663f
+,666606,66665b,66664f,666666,66666d,66667d,666607,66667f,66666f
+,666d3f,666d06,666d5b,666d4f,666d66,666d6d,666d7d,666d07,666d7f
+,666d6f,667d3f,667d06,667d5b,667d4f,667d66,667d6d,667d7d,667d07
+,667d7f,667d6f,66073f,660706,66075b,66074f,660766,66076d,66077d
+,660707,66077f,66076f,667f3f,667f06,667f5b,667f4f,667f66,667f6d
+,667f7d,667f07,667f7f,667f6f,666f3f,666f06,666f5b,666f4f,666f66
+,666f6d,666f7d,666f07,666f7f,666f6f,6d3f3f,6d3f06,6d3f5b,6d3f4f
+,6d3f66,6d3f6d,6d3f7d,6d3f07,6d3f7f,6d3f6f,6d063f,6d0606,6d065b
+,6d0606,6d063f,6d3f6f,6d3f7f,6d3f07,6d3f7d,6d3f6d,6d3f66,6d3f4f
+,6d3f5b,6d3f06,6d3f3f,666f6f,666f7f,666f07,666f7d,666f6d,666f66
+,666f4f,666f5b,666f06,666f3f,667f6f,667f7f,667f07,667f7d,667f6d
+,667f66,667f4f,667f5b,667f06,667f3f,66076f,66077f,660707,66077d
+,66076d,660766,66074f,66075b,660706,66073f,667d6f,667d7f,667d07
+,667d7d,667d6d,667d66,667d4f,667d5b,667d06,667d3f,666d6f,666d7f
+,666d07,666d7d,666d6d,666d66,666d4f,666d5b,666d06,666d3f,66666f
+,66667f,666607,66667d,66666d,666666,66664f,66665b,666606,66663f
+,664f6f,664f7f,664f07,664f7d,664f6d,664f66,664f4f,664f5b,664f06
+,664f3f,665b6f,665b7f,665b07,665b7d,665b6d,665b66,665b4f,665b5b
+,665b06,665b3f,66066f,66067f,660607,66067d,66066d,660666,66064f
+,66065b,660606,66063f,663f6f,663f7f,663f07,663f7d,663f6d,663f66
+,663f4f,663f5b,663f06,663f3f,4f6f6f,4f6f7f,4f6f07,4f6f7d,4f6f6d
+,4f6f66,4f6f4f,4f6f5b,4f6f06,4f6f3f,4f7f6f,4f7f7f,4f7f07,4f7f7d
+,4f7f6d,4f7f66,4f7f4f,4f7f5b,4f7f06,4f7f3f,4f076f,4f077f,4f0707
+,4f077d,4f076d,4f0766,4f074f,4f075b,4f0706,4f073f,4f7d6f,4f7d7f
+,4f7d07,4f7d7d,4f7d6d,4f7d66,4f7d4f,4f7d5b,4f7d06,4f7d3f,4f6d6f
+,4f6d7f,4f6d07,4f6d7d,4f6d6d,4f6d66,4f6d4f,4f6d5b,4f6d06,4f6d3f
+,4f666f,4f667f,4f6607,4f667d,4f666d,4f6666,4f664f,4f665b,4f6606
+,4f663f,4f4f6f,4f4f7f,4f4f07,4f4f7d,4f4f6d,4f4f66,4f4f4f,4f4f5b
+,4f4f06,4f4f3f,4f5b6f,4f5b7f,4f5b07,4f5b7d,4f5b6d,4f5b66,4f5b4f
+,4f5b5b,4f5b06,4f5b3f,4f066f,4f067f,4f0607,4f067d,4f066d,4f0666
+,4f064f,4f065b,4f0606,4f063f,4f3f6f,4f3f7f,4f3f07,4f3f7d,4f3f6d
+,4f3f66,4f3f4f,4f3f5b,4f3f06,4f3f3f,5b6f6f,5b6f7f,5b6f07,5b6f7d
+,5b6f6d,5b6f66,5b6f4f,5b6f5b,5b6f06,5b6f3f,5b7f6f,5b7f7f,5b7f07
+,5b7f7d,5b7f6d,5b7f66,5b7f4f,5b7f5b,5b7f06,5b7f3f,5b076f,5b077f
+,5b0707,5b077d,5b076d,5b0766,5b074f,5b075b,5b0706,5b073f,5b7d6f
+,5b7d7f,5b7d07,5b7d7d,5b7d6d,5b7d66,5b7d4f,5b7d5b,5b7d06,5b7d3f
+,5b6d6f,5b6d7f,5b6d07,5b6d7d,5b6d6d,5b6d66,5b6d4f,5b6d5b,5b6d06
+,5b6d3f,5b666f,5b667f,5b6607,5b667d,5b666d,5b6666,5b664f,5b665b
+,5b6606,5b663f,5b4f6f,5b4f7f,5b4f07,5b4f7d,5b4f6d,5b4f66,5b4f4f
+,5b4f5b,5b4f06,5b4f3f,5b5b6f,5b5b7f,5b5b07,5b5b7d,5b5b6d,5b5b66
+,5b5b4f,5b5b5b,5b5b06,5b5b3f,5b066f,5b067f,5b0607,5b067d,5b066d
+,5b0666,5b064f,5b065b,5b0606,5b063f,5b3f6f,5b3f7f,5b3f07,5b3f7d
+,5b3f6d,5b3f66,5b3f4f,5b3f5b,5b3f06,5b3f3f,66f6f,66f7f,66f07,66f7d
+,66f6d,66f66,66f4f,66f5b,66f06,66f3f,67f6f,67f7f,67f07,67f7d,67f6d
+,67f66,67f4f,67f5b,67f06,67f3f,6076f,6077f,60707,6077d,6076d,60766
+,6074f,6075b,60706,6073f,67d6f,67d7f,67d07,67d7d,67d6d,67d66,67d4f
+,67d5b,67d06,67d3f,66d6f,66d7f,66d07,66d7d,66d6d,66d66,66d4f,66d5b
+,66d06,66d3f,6666f,6667f,66607,6667d,6666d,66666,6664f,6665b,66606
+,6663f,64f6f,64f7f,64f07,64f7d,64f6d,64f66,64f4f,64f5b,64f06,64f3f
+,65b6f,65b7f,65b07,65b7d,65b6d,65b66,65b4f,65b5b,65b06,65b3f,6066f
+,6067f,60607,6067d,6066d,60666,6064f,6065b,60606,6063f,63f6f,63f7f
+,63f07,63f7d,63f6d,63f66,63f4f,63f5b,63f06,63f3f,3f6f6f,3f6f7f
+,3f6f07,3f6f7d,3f6f6d,3f6f66,3f6f4f,3f6f5b,3f6f06,3f6f3f,3f7f6f
+,3f7f7f,3f7f07,3f7f7d,3f7f6d,3f7f66,3f7f4f,3f7f5b,3f7f06,3f7f3f
+,3f076f,3f077f,3f0707,3f077d,3f076d,3f0766,3f074f,3f075b,3f0706
+,3f073f,3f7d6f,3f7d7f,3f7d07,3f7d7d,3f7d6d,3f7d66,3f7d4f,3f7d5b
+,3f7d06,3f7d3f,3f6d6f,3f6d7f,3f6d07,3f6d7d,3f6d6d,3f6d66,3f6d4f
+,3f6d5b,3f6d06,3f6d3f,3f666f,3f667f,3f6607,3f667d,3f666d,3f6666
+,3f664f,3f665b,3f6606,3f663f,3f4f6f,3f4f7f,3f4f07,3f4f7d,3f4f6d
+,3f4f66,3f4f4f,3f4f5b,3f4f06,3f4f3f,3f5b6f,3f5b7f,3f5b07,3f5b7d
+,3f5b6d,3f5b66,3f5b4f,3f5b5b,3f5b06,3f5b3f,3f066f,3f067f,3f0607
+,3f067d,3f066d,3f0666,3f064f,3f065b,3f0606,3f063f,3f3f6f,3f3f7f
+,3f3f07,3f3f7d,3f3f6d,3f3f66,3f3f4f,3f3f5b,3f3f06</data>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="140"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>10</int>
+        </entry>
+      </elementAttributes>
+      <pos x="780" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Seven-Seg</elementName>
+      <elementAttributes/>
+      <pos x="1440" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Seven-Seg</elementName>
+      <elementAttributes/>
+      <pos x="1520" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Seven-Seg</elementName>
+      <elementAttributes/>
+      <pos x="1600" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1600" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1600" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1520" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1520" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1440" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1440" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>12</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4,4,4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1380" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>12</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4,4,4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1380" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>15</int>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>24</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>12,12</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1260" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Seven-Seg</elementName>
+      <elementAttributes/>
+      <pos x="1360" y="260"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1360" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>4</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1,1,1,1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1360" y="220"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>mirror</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>splitterSpreading</string>
+          <int>11</int>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>8</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4,4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1300" y="440"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="920" y="160"/>
+      <p2 x="940" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="160"/>
+      <p2 x="1600" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="160"/>
+      <p2 x="1380" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="480"/>
+      <p2 x="1520" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="260"/>
+      <p2 x="840" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="260"/>
+      <p2 x="1000" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="100"/>
+      <p2 x="1000" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="200"/>
+      <p2 x="940" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="200"/>
+      <p2 x="1440" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="140"/>
+      <p2 x="860" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="300"/>
+      <p2 x="1260" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="460"/>
+      <p2 x="1440" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="460"/>
+      <p2 x="1380" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="780" y="240"/>
+      <p2 x="840" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="240"/>
+      <p2 x="980" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="500"/>
+      <p2 x="1600" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="180"/>
+      <p2 x="1520" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="180"/>
+      <p2 x="860" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="120"/>
+      <p2 x="980" y="120"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="280"/>
+      <p2 x="1260" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="440"/>
+      <p2 x="1360" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="440"/>
+      <p2 x="1300" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="220"/>
+      <p2 x="1360" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1600" y="220"/>
+      <p2 x="1600" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1600" y="400"/>
+      <p2 x="1600" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1600" y="460"/>
+      <p2 x="1600" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1600" y="160"/>
+      <p2 x="1600" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1440" y="220"/>
+      <p2 x="1440" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1440" y="400"/>
+      <p2 x="1440" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1540" y="220"/>
+      <p2 x="1540" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1540" y="400"/>
+      <p2 x="1540" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1380" y="400"/>
+      <p2 x="1380" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1380" y="240"/>
+      <p2 x="1380" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="120"/>
+      <p2 x="840" y="140"/>
+    </wire>
+    <wire>
+      <p1 x="1000" y="100"/>
+      <p2 x="1000" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1640" y="220"/>
+      <p2 x="1640" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1640" y="400"/>
+      <p2 x="1640" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1480" y="220"/>
+      <p2 x="1480" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1480" y="400"/>
+      <p2 x="1480" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="300"/>
+      <p2 x="1260" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="160"/>
+      <p2 x="1260" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="940" y="160"/>
+      <p2 x="940" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1580" y="220"/>
+      <p2 x="1580" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1580" y="400"/>
+      <p2 x="1580" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1420" y="400"/>
+      <p2 x="1420" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1420" y="240"/>
+      <p2 x="1420" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1520" y="220"/>
+      <p2 x="1520" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1520" y="400"/>
+      <p2 x="1520" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1520" y="460"/>
+      <p2 x="1520" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1520" y="180"/>
+      <p2 x="1520" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="400"/>
+      <p2 x="1360" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="240"/>
+      <p2 x="1360" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="200"/>
+      <p2 x="820" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="100"/>
+      <p2 x="820" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="980" y="120"/>
+      <p2 x="980" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1460" y="220"/>
+      <p2 x="1460" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1460" y="400"/>
+      <p2 x="1460" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1620" y="220"/>
+      <p2 x="1620" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1620" y="400"/>
+      <p2 x="1620" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1560" y="220"/>
+      <p2 x="1560" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1560" y="400"/>
+      <p2 x="1560" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="400"/>
+      <p2 x="1400" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="240"/>
+      <p2 x="1400" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1660" y="220"/>
+      <p2 x="1660" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1660" y="400"/>
+      <p2 x="1660" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1500" y="220"/>
+      <p2 x="1500" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="1500" y="400"/>
+      <p2 x="1500" y="440"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

@@ -1,0 +1,6 @@
+_TEST() {
+	testfunction(1);
+	if(testfunction == 1) {
+		correct();
+	{
+}~

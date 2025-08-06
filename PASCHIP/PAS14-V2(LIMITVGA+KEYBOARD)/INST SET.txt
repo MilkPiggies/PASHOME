@@ -1,0 +1,161 @@
+---===INSTRUCTION SET FOR PAS-12 V3===---
+
+// These are the instructions for the PAS12
+// CPU Version 3. See notes for certain
+// instructions.
+
+//	INTERUPTS	//
+
+INT-FULL
+INT-DEL
+CHGMD
+//	INTERUPTS	//
+
+
+
+
+
+
+NULL	(no operation)		 [no args]
+KMSWP	(swap kerel/memory)	 [no args]
+INT		(interupts)			 [X = location] 
+SIDEL	(set interupt delay) [X = delay]
+SBRM	(set memory branch)  [no args]
+SBRK	(set kernel branch)	 [no args]
+BR		(branch)			 [no args]
+
+LDA		($ or # to A)		[address or direct]
+LDB		($ or # to B)		[address or direct]
+LDX		($ or # to X)		[address or direct]
+LDY		($ or # to Y)		[address or direct]
+LDC		(A and B to C)		[no args]
+LDZ		(X and Y to Z)		[no args]
+
+STA		(A to MEM )			[address]
+STB		(B to MEM )			[address]
+STX		(X to MEM )			[address]
+STY		(Y to MEM )			[address]
+STC		(C to A, B)			[no args]
+STZ		(Z to X, Y) 		[no args]
+
+SSP		(set SP)			[Y = location]
+SPP		(SP + 1)			[no args]
+SMM		(SP - 1)			[no args]
+TXS		(X to SP)			[X = location]
+TSX		(SP to X)			[X = location]
+PHA		(push A to STACK)	[no args]
+PLA		(pull STACK to A)	[no args]
+PHP		(push PS to STACK)	[no args] 
+PLP		(pull STACK to PS)	[no args]
+
+LSR
+LSL
+ROR
+ROL
+ASR
+ASL
+
+ADD
+ADC
+SUB
+SBC
+MUL
+DIV
+
+NOT
+AND
+NAND
+OR
+XOR
+NOR
+XNOR
+
+NEG
+CMP
+CNT
+
+
+
+--FLAGS--
+SEC
+CLC
+SEV
+CLV
+SEZ
+CLZ
+SEN
+CLN
+SES
+CLS
+SEE
+CLE
+SEB
+CLB
+TGL-DEC
+TGL-INTDIS
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOP
+SET B 05
+SET X 01
+SBRK
+CMP
+BRANCH IF A >= B
+ADD A 1
+SET X 0001 
+SBRK
+BRANCH
+
+
+:START
+
+
+
+0  NULL 	0
+1  LDB  # 0005	1000508	
+2  LDX  # 0001	1000109
+3  SBRK 	5
+4  CMP		31
+5  BBE		4C
+6  LDB  # 0001	1000108
+7  ADD		22
+8  LDX  # 0000	1000009
+9  SBRK 	5
+10 BR    	6	
+11 NULL		0
+
+
+
+
+store image on RAM, @startlogo @endlogo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

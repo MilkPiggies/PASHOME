@@ -1,0 +1,642 @@
+testing how the kernel will work for now, 
+the only data we load is on KROM. but we 
+should be able to insert another disk with 
+a program we want to run. this could be 
+called EXT.
+
+
+KERNEL should first ask the user to either load or run
+and on what device. for example:
+
+if the user inputs LOAD 0, it should load whats on MRAM
+but if the user inputs LOAD 1, it should load whats on EXT
+
+then when the user is ready and the program has loaded, the
+user may type RUN to run what was loaded.
+
+
+
+(go back here)
+SHOW PROMPT '/>'
+
+GET USER INPUT
+
+CHECK IF LOAD WAS READ
+  (check $1)
+  (check $2)
+  if $1 and $2 are L and O, continue, else goto next word
+  (check $3)
+  (check $4)
+  if $3 and $4 are A and D, continue, else goto next word
+    GOTO :LOAD
+
+CHECK IF RUN  WAS READ
+  (check $1)
+  (check $2)
+  if $1 and $2 are R and U, continue, else goto next word
+  (check $3)
+  (check $4)
+  if $3 and $4 are N and ' ', continue, else goto next word
+    GOTO :RUN
+
+[nextword] ELSE STOP (add more commands here)
+
+
+:LOAD 
+
+:RUN
+
+:BACK2CLI
+
+
+
+
+
+
+//KERNEL_V1
+
+:START
+NOP
+
+
+:SHOW_PROMPT
+LOAD '/' ON X 
+SEND X TO TELNET
+NOP
+LOAD '>' ON X 
+SEND X TO TELNET
+
+
+:USERINPUT
+
+get and store what the user types, and add 1 to pointer
+
+
+
+
+
+(int, user sends char, we store the char and up a counter)
+(repeat, and once counter is at 0x??, we goto next function)
+
+:USERINPUT
+
+interupt
+(once user sends char, un interupt)
+
+get what user inputted  
+store in memory according to a pointer
+send though TELNET
+
+and jump back to :USERINPUT start
+    UNLESS the last key pressed was "ENTER" or 0x0A
+    IF last key was "ENTER", jump to :NEXTLINE
+
+:NEXTLINE
+(go back to prompt? after adding one to, some pointer)
+
+
+
+
+
+once we read the load command, we check the rest of
+what the user typed, eg: ' 1   '
+but if LOAD was not equal to what the user typed
+we then check if RUN was what the user sent
+
+
+
+
+
+
+
+
+check if load 
+if = load, jump to load
+    else, continue
+
+:load 
+(???)
+
+
+
+
+
+print prompt />
+
+interupt
+(get chars until user presses ENTER)
+(with pointer)
+
+(loopback, unless ENTER is pressed)
+
+
+if enter is pressed, goto parser?
+read chars until space, this is OP
+
+after, check what the rest is ($# / DATA)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//WHERE TO PUT CHAR 
+this is responsible for where the typed char goes
+
+//START OF EXTRA
+this will keep track of where the command ends
+
+//END OF EXTRA
+this keeps track of where the user pressed ENTER
+
+
+
+
+:START
+NOP 
+(pointer0 = 0) //??
+(pointer1 = 0) //WHERE TO PUT CHAR
+(pointer2 = 0) //START OF EXTRA
+(pointer3 = 0) //END OF EXTRA
+
+
+:USERINPUT
+NOP 
+NOP 
+NOP
+INT
+NOP
+
+(GET DATA FROM TELNET)
+(STORE DATA ACCORDING TO POINTER1[Z])
+(ADD ONE TO POINTER1)
+
+(CHECK IF EXIT KEY WAS PRESSED) [pointer3 for location]
+    IF PRESSED, GOTO :PARSER 
+    ELSE CONTINUE 
+
+GO BACK TO :USER INPUT
+
+
+
+:PARSER 
+(check what command was sent)
+
+    :ECHO
+    (check if E C H O was sent)
+    (if so, goto :EXECUTOR with 0) [:EXECECHO]
+
+    :LOAD
+    (check if L O A D was sent)
+    (if so, goto :EXECUTOR with 1)
+
+    :RUN
+    (check if R U N was sent)
+    (if so, goto :EXECUTOR with 2)
+
+
+
+:EXECUTOR
+(check what code was sent)
+
+(if 1, ECHO $?5 to $??)
+(then go back to start)
+(else continue)
+
+(if 2 ...)
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------
+
+
+
+
+
+
+:start
+NOP 
+NOP
+NOP
+
+//SET P0
+LDA $# 0x00
+STA $  0x20
+
+//SET P1 AND P2
+NOP 
+LDA $# 0x00
+STA $  0x22
+LDA $# 0x01
+STA $  0x23
+
+//SET P3 AND P4
+NOP
+LDA $# 0x00
+STA $  0x25
+LDA $# 0x00
+STA $  0x26
+
+
+SPACE x50
+
+
+:userinput 
+NOP 
+NOP 
+NOP
+INT
+NOP 
+TELRECV
+STX $  0x0A
+
+//CHECK IF '='
+NOP
+LDB $  0x0A
+LDA $# 0x3D
+CMP
+
+//BRANCH TO :parser
+NOP
+LDX $# 0x80
+LDY $# 0x00
+SBRK
+BEQ 
+NOP
+NOP
+
+//PUT P1+P2 ON Z
+LDX $  0x22
+LDY $  0x23
+LDZ 
+
+//PUT $0A ON X 
+LDX $  0x0A
+
+//PUT X ON $Z 
+TGLZADDR
+STX $  0xZ
+TGLZADDR
+
+//ADD 1 TO P2x
+NOP
+LDA $  0x23
+LDB $# 0x01
+ADD 
+STA $  0x23
+
+//DISPLAY USER INPUT
+NOP 
+LDX $  0x0A
+TELSEND
+
+//BRANCH BACK TO :userinput
+NOP 
+LDX $# 0x3F
+LDY $# 0x00
+SBRK
+BR
+
+
+SPACE TO 0x0088
+
+
+:parser 
+NOP 
+NOP 
+NOP
+
+
+
+:checkecho
+NOP 
+LDA $  0x0100
+LDB $# 0x45
+CMP
+
+NOP 
+LDX $# 0x00
+LDY $# 0x02
+SBRK
+BNE
+
+NOP
+NOP 
+NOP
+
+NOP 
+LDA $  0x0101
+LDB $# 0x43
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP 
+NOP 
+NOP
+
+NOP 
+LDA $  0x0102
+LDB $# 0x48
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP 
+NOP
+NOP
+
+NOP 
+LDA $  0x0103
+LDB $# 0x4F
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP
+NOP
+NOP
+(goto :exececho) (0x0200)
+
+
+
+
+:checkload
+NOP
+LDA $  0x0100
+LDB $# 0x'L'
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP
+NOP 
+NOP
+
+NOP 
+LDA $  0x0101
+LDB $# 0x'O'
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP 
+NOP 
+NOP
+
+NOP 
+LDA $  0x0102
+LDB $# 0x'A'
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP 
+NOP
+NOP
+
+NOP 
+LDA $  0x0103
+LDB $# 0x'D'
+CMP
+
+NOP 
+LDX $# 0x??
+LDY $# 0x??
+BNE
+
+NOP
+NOP
+NOP
+(goto :execload)
+
+
+
+
+
+
+
+(load $0100 on A and load 'E' to B)
+compare A and B
+if (not equal) branch to :checkload
+if equal, continue
+
+
+
+
+
+
+
+//check if command was ECHO
+
+check if first char is E
+(if it is, continue, if it isint, goto :checkload)
+
+check if second char is C
+
+..
+
+:checkload
+
+
+
+
+
+
+----------------------------------------
+
+
+
+
+
+
+
+
+P0      = ??
+P1 + P2 = WHERE LAST CHAR IS 
+P3 + P4 = WHERE END OF COMMAND IS
+
+P1 and P2 should default to $40 (where we starts storing chars)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo has 4 chars, + 1 for space.
+E = 0x0100
+C = 0x0101
+H = 0x0102
+O = 0x0103
+_ = 0x0104
+
+start reading chars from 0x0105
+
+
+
+store $0023 on $0030 (0x0C)
+store 0x05 on $0031
+
+
+
+
+
+
+---
+
+NEW LINE TELNET
+
+SET $0030 and $0031
+
+
+:loop 
+
+check if $0030 and $0031 are equal
+    if equal, exit?(end of userinput)
+    else continue
+
+    LDA $  0x0030
+    LDB $  0x0031
+    CMP
+
+    (set branch)
+    NOP 
+    LDX $# 0x00
+    LDY $# 0x03
+    SBRK
+    BEQ
+
+
+
+    LDX $  0x0031
+    LDY $# 0x01
+    LDZ 
+
+
+
+    TGLZADDR
+    LDX $# 0xZ
+    TGLZADDR
+
+
+
+    TELSEND
+
+
+
+    LDA $  0x0031
+    LDB $# 0x01
+    ADD
+    STA $  0x0031
+
+
+
+goto :loop
+LDX $# 0x20
+LDY $# 0x02
+SBRK
+BR
+
+
+---
+
+
+
+
+
+
+LDA $  0x0031
+LDB $  0x0030
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0105 is start
+$0022 + $0023 is end
+
+only use 0023? 4xLSB
+
+load A $  0x0023 (0x0B)
+load B $  0x0030 (0x05)

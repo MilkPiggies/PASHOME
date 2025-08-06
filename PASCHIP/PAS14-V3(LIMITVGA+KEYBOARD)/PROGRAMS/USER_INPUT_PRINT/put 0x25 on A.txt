@@ -1,0 +1,58 @@
+put 0x2F on B 
+set keyboard location
+put B on $15
+
+interupt
+
+
+
+put 0x25 on A
+store A on $20
+
+
+get keyboard location 
+^ store on $16
+
+
+
+put 1 on B
+add A and B 
+put A on $17
+
+
+
+:RET --
+
+
+put $15 on A
+put $17 on B
+compare A and B
+
+(SET :END)
+
+branch if equal
+
+
+(get $15 from vram)
+move to A
+
+put $20 on X
+put X+Y on Z
+
+toggle zaddr
+put A on $Z
+toggle zaddr
+
+load $15 on A
+load 0x01 on B
+add A + B
+put on $15
+
+load $20 on A
+add A + B
+put A on $20
+
+(SET :RET)
+branch to :RET
+
+:END

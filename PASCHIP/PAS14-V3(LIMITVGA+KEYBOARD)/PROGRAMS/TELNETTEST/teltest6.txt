@@ -1,0 +1,351 @@
+SET $40 TO 0x45
+
+
+before printing a newline in ENDADDR
+we want to store $30 - $36 on MRAM
+
+to do this, remember the following:
+-A is $30
+-B is $35, $36
+-C is $31, $32, $33, $34
+
+before storing these values on the 
+designated register, we need to do some
+transforming:
+-when we read the values ($30-$36) the value
+will be in ascii, we need them in hex form
+eg: 0 = 0x30
+    1 = 0x31
+    2 = 0x32
+    ...
+    9 = 0x39
+----------------
+    A = 0x41
+    B = 0x42
+    C = 0x43
+    ...
+    F = 0x46
+
+
+
+- A -
+first we can transform A or $30. $30 should
+only ever be one bit, either 0 or 1. This 
+coralates to if the command is using an 
+address, or a direct value ($/$#).
+
+so if $30 = 0x30, we subtract 0x30.
+and if $30 = 0x31, we still subtract 0x30.
+
+(store on where $40 points to)
+(add one to $40)
+
+
+
+- B -
+we can then move to B, or $35 and $36.
+for this we just want to put both numbers 
+together after transforming them to the hex 
+value.
+
+again, if $35 = 0x30, subtract 0x30
+if $35 = 0x31, subtract 0x30.
+so on and on, we only want the LSBx4
+
+Once we have transformed both $35 & $36,
+(store them wherever $40 points to)
+
+
+
+
+- A -
+transform $30 to hex
+(sub 0x30 from $30)
+(or translate 0x41 to A...)
+
+store it on where $40 points to
+add 1 to $40
+store it on $4A
+
+
+
+- B -
+transform $35 to hex
+(sub 0x30 from $30)
+(or translate 0x41 to A...)
+
+store it on where $40 points to
+add 1 to $40
+
+
+transform $36 to hex
+(sub 0x30 from $30)
+(or translate 0x41 to A...)
+
+store it on where $40 points to 
+add 1 to $40
+
+
+get $41 and $42
+
+30 + 41
+00 + 0A
+
+or 
+
+46 + 46
+0F + 0F
+
+first 0F gets multiplied to 0F
+then add F0 + 0F = FF
+
+then store FF or 0A on $4B
+
+
+
+- C -
+(same as B but with 2 extra digits)
+transform $31, $32 $33, $34 to hex
+store each digit on where $40 points to
+add each digit so the first two MSB are
+stored on $4D and the last two LSB's are
+stored on $4E.
+
+eg: $31 translation is stored on $48
+    $32 translation is stored on $49
+    ...
+
+
+
+
+
+
+A = $30
+B = $35, $36
+C = $31, $32, $33, $34
+
+translate each ascii char to its hex value
+store translated $30 to $4A
+combine $35 and $36 to make $4B
+combine $31, $32, $33, $34 to make $4C & $4D
+
+load $4A, $4B, $4C and $4D to A, B and C
+store A, B and C on MRAM at address $50
+
+
+
+
+//$30 
+LDA $  0x30
+LDB $# 0x30
+SUB $  0x00
+STA $# 0x4A
+
+(so $4A will have either 0 or 1)
+
+(this puts $30 on A and 0x30 on B
+to subtract them, gaining the result on A)
+
+(then store $40 on Z to store A on the pointer?)
+(or just store on $4A)
+
+
+
+
+
+
+//$35, $36
+
+
+
+
+
+
+
+
+
+
+
+
+null
+load $35 to A 
+load 40 to B
+compare A and B 
+
+load $branchX to X 
+load $branchY to Y 
+sbrk
+branch if A > B (BCS)
+
+(continue if no branch)
+(A = $35 = 30 = 0x00)
+(so just A(30) - B(30) )
+
+load $35 to A
+load 30 to B 
+subtract A from B
+store A on $45
+
+
+
+
+(above branch?)
+(check if number is 41)
+(if true branch, if false continue)
+(check if number is 42)
+(if true branch, if false continue)
+
+(branches down here) ~0x205
+LDA $  0x35
+LDB $# 0x41
+CMP $  0x00
+LDX $branchx
+LDY $branchy
+SBRK $  0x00
+BEQ $  0x00 (goes to writing to $45)
+
+(here we put the check for 0x42)
+(for now just interupt)
+
+[SPACE]
+
+(write to $45 with said data, this is for A)
+
+
+
+
+
+
+(then do $36)
+(then branch??)
+
+
+
+
+
+
+
+
+
+
+
+
+
+(WRITE $35 + $35 to $4B)
+check if either in thirties or fourties
+if thirties, sub 30
+if fourties, deppends.
+
+(make each the equivilant, eg 0x30 = 0x00 and 0x41 = 0x0A)
+
+store translated $35 on $45
+store translated $36 on $46
+
+add $45 and $46
+store on $4B
+
+(so if $35 is 0x0A)
+(and $36 is 0x03)
+(then make $4B = 0xA3)
+
+
+
+
+(WRITE $31, $32, $33, $34 to $4C and $4D)
+
+
+(PUT $4A-$4D on A, B, and C)
+
+
+(SEND A, B, C on MRAM at address $40)
+
+
+
+
+
+
+
+
+
+
+
+LDA $# 0x0A
+LDB $# 0x04
+LSL $  0x00
+
+STA $  0x45
+
+LDB $  0x46
+ADD $  0x00
+STA $  0x4B
+
+
+
+
+
+
+
+
+
+40
+
+41
+42
+43
+44
+
+45
+46
+
+move $31 - $34 
+to
+     $41 - $44
+
+transform $41 and $43
+($41 = 0X = X0)
+($43 = 0Y = Y0)
+
+add $41 and $42 to $4C
+add $43 and $44 to $4D 
+
+see google keep
+ same thing with op, just x2
+
+
+
+
+
+check if $31 is <=> 0x40
+if below, continue and -0x30
+if above, branch to check
+
+
+[branch]
+check if 41 = branch to 41
+check if 42 = branch to 42
+check if 43 = branch to 43
+check if 44 = branch to 44
+check if 45 = branch to 45
+check if 46 = branch to 46
+
+[branch]
+$41 = ^^
+return
+
+
+
+
+
+(WRITE $31 to $41)
+NOP $  0x00
+LDA $  0x31
+LDB $# 0x40
+CMP $  0x00
+LDX $# 0x00 #
+LDY $# 0x02 #
+SBRK $  0x00
+BCS $  0x00
+LDA $  0x31
+LDB $# 0x30
+SUB $  0x00
+STA $# 0x41

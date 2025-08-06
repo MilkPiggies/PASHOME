@@ -1,0 +1,24 @@
+//THISISTEXT
+THISISTEXT
+_FunctionOne() {
+/}
+
+//ThisIsText
+
+_FunctionTwo() { 
+/}
+_FuntionThree() 
+/}
+
+testword
+//TeestWord
+_TestWord() 
+{ do this
+/}
+
+
+
+
+Moderate
+(warden)
+

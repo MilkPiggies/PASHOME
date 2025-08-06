@@ -1,0 +1,67 @@
+### CODE TO DRAW LINE ON TOP ROW ###
+
+
+
+
+
+
+//INIT
+NOP $  0x00
+
+	//SET A TO 0
+	LDA $# 0x00
+	
+	//SET B TO 0
+	LDB $# 0x00
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+	
+	
+	
+set segloc 0-9 to 0x40-0x49
+set char 0-0x27 to "-"
+
+
+
+
+//SEGLOC09
+
+A = 0 (adder)
+B = 0 (counter)
+
+
+2nd line 1st column = 0100 (0x40)
+2nd line 2nd column = 0101 (0x41)
+
+
+x is always 01 
+y increments from 0 to 9
+y is added to 0x40 before being sent to segloc
+
+
+
+
+
+### loop ###
+
+load 1 to X
+Y + 40
+setsegloc
+
+add 1 to B
+
+transfer B to Y
+
+loop back
+
+
+
+
+
+
+
+

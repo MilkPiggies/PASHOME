@@ -1,0 +1,15 @@
+//TESTSRC
+[comp info]
+!data
+
+[gbl var]
++example = 0x30
+
+[funcs]
+_func1test() {
+put(A, 20)
+mov(A, X)
+mov(01, 30)
+sto(X, 15, R)
+/}
+

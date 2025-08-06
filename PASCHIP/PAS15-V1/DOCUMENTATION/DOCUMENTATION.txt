@@ -1,0 +1,139 @@
+This file aims to guide user to understanding the PAS architecture.
+
+The file goes as follows:
+1. THE CLOCK SEGMENT
+2. THE CPR SEGMENT 
+3. THE KM-CODE SEGMENT
+4. THE OP-SELECTOR SEGMENT
+5. THE FLAG SEGMENT
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------
+
+1. THE CLOCK
+The clock segment is quite simple. There is a 3 bit input that the user can input their wanted clock speed.
+Clock speed goes as follows:
+
+0 = OFF
+1 = 1Hz
+2 = 64Hz
+3 = 128Hz
+4 = 512Hz
+5 = 1024Hz
+6 = 4092Hz
+7 = 16384Hz
+
+Once the user has chosen their wanted value, they can press SCLK1 (SetClock1) to start the clock. Please note 
+that this does not start cpu execution. See next chapter for that. This segment is generally only controlled
+by the host running the cpu.
+
+----------------------------------------------------------------------------------------------------------------
+
+2. CPR 
+The CPR (name?) is the segment responsible for controlling CPU EXECUTION, eg: deciding weather the CPU is 
+recieving a clock pulse or not. The CPR chip itself has four inputs:
+
+0 = CLOCK_PULSE		(The pulse coming from the clock, explained in the last chapter)
+1 = CLOCK/MANUAL	(The value deciding if we are reading the CLOCK or MANUAL_PULSE)
+2 = MANUAL		(The MANUAL_PULSE input, only read if CLOCK/MANUAL is set to 1)
+3 = CLEAR 		(The input to clear current location in CPR back to 0(NULL))
+
+LOCATIONS: The CPR Location is where in the cycle we are, the cycle insists of: 
+
+0 = NULL	(The NULL location does nothing)
+1 = COPY	(The COPY location copies the current location on KROM/MRAM, deppending on which is selected)
+2 = RUN		(The RUN location simply runs the copied command
+3 = NEXT	(The NEXT location moves the KROM/MRAM address up by one, so eg: 3 = 4, deppending on which is selected)
+
+After 3(NEXT) we reset back to 0(NULL) and continue the loop. that is until the user or the program interupts.
+The CPR will not reset back to 0 upon reset, that is why there is a MANUAL-CLEAR button, incase of bugs.
+
+----------------------------------------------------------------------------------------------------------------
+
+3. KM-CODE
+This segment is what runs the code. This segment may be the most complicated segment. There are 7 important registers here:
+
+0 = MBRANCH 	(This register holds what we want to branch to if we are executing off MRAM)
+1 = MCUR-ADDR   (This register holds what address we are currently executing off MRAM)
+2 = MRAM	(This ram holds the code we want to excecute on MRAM)
+3 = COPY 	(This register holds the last copied code to execute on CPU either from MRAM or KROM)
+4 = KBRANCH 	(This register holds where we want to branch to if we are executing off KROM)
+5 = KCUR-ADDR   (This register holds what address we are currently executing off KROM)
+6 = KROM 	(this rom holds the code the for the program currently running on KROM)
+
+Most of the inputs required for this segment comes from the cpu itself, excluding manual input and the inputs from the CPR.
+All avilable inputs goes as follows:
+
+0 = BRMADDR(8bit)	(Data for storing the branch on MBRANCH)
+1 = SBRM		(Input for storing the data on MBRANCH)
+2 = BRM			(Manual branching on MRAM)
+3 = MAN-M-NEXT		(Manual moving MRAM location up by one)
+4 = MAN-M-READ 		(Manual output MRAM data of current location)
+
+5 = WR2M		(Manual input for writing to MRAM)
+6 = WR2M-VAL		(Manual value for writing to MRAM)
+7 = WR2M-ADDR		(Manual address for writing to MRAM)
+
+8 = MAN-TGL-K-OR-M  	(Manual switching from KROM and MRAM
+9 = MAN-NEXT		(Manual moving MRAM/KROM location up by one, depending on which one is selected)
+10 = MAN-COPY		(Manual copy MRAM/KROM data from current location onto COPY register, depending on which one is selected)
+11 = MAN-RUN 		(Manual run data on COPY register)
+
+12 = BRKADDR(8bit)	(Data dor storing the branch on KBRANCH)
+13 = SBRK		(Input for storing the data on KBRANCH)
+14 = BRK		(Manual branching on KROM)
+15 = MAN-K-NEXT		(Manual moving KROM location up by one)
+16 = MAN-K-READ 	(Manual output KROM data of current location)
+
+These inputs are generally only used for debugging purposes, as said above; the CPU will generally control this segment, 
+according to the Program. This will be explained further on, but for now, here is a list of the commands the cpu can send:
+
+0 = SBRM 		(This command will set MBRANCH to whatever is on X)
+1 = BRM			(This command will change the location of MRAM to whatever is on MBRANCH) 
+			[This command is ran by the BR command]
+
+2 = WR2-MRAM		(This command will take the contents of A, B and C and put them on MRAM, at the specified address on X)
+3 = KMSWP		(This command switches the active "command giver" from MRAM to KROM or vice versa)
+
+4 = SBRK 		(This command will set KBRANCH to whatever is on X and Y)
+5 = BRK			(This command will change the location of KROM to whatever is on KBRANCH) 
+			[This command is ran by the BR command]
+
+----------------------------------------------------------------------------------------------------------------			
+ 
+4. OP-SEL
+The Operator-Selector segment is in control of what cpu commands gets sent. it is essentially a decoder.
+eg: if i send the command NULL(0) the cpu will send a NOP command, as in no operation, and nothing will happen 
+during that clock cycle (null, copy, run, next).
+
+But if i send a INT(2), the cpu will interupt, and stop the clock from propagating to the KM-CODE segment, stopping further 
+execution.
+
+There are two ways the OP-SEL works, one being manual intervention as mentioned above, and the other; receiving commands 
+from KM-CODE.
+
+For manual intervention, the available inputs are as follows:
+
+0 = MAN-OP-DATA		(The operation wanted by the user)
+			[This value can only be an operation that does not require an address/value]
+
+1 = MAN-OP-EN		(If this value is 1, the operation in MAN-OP-DATA will be ran when MAN-OP-SEND is pressed)
+2 = MAN-OP-SEND		(When this is pressed, as said above, the operation on MAN-OP-DATA will be ran)
+
+The list of commands is too long to have in this file, so please see OP-LIST.txt for a list of all the possible commands 
+the CPU can use.
+
+If MAN-OP-EN is 0, then the CPU will continue reading from KM-CODE according to CPR.
+
+
+
+NOTE: BUG: anything over 50 must have a -1 on it. OP-SEL is missing 51.
+
+----------------------------------------------------------------------------------------------------------------			
+
+5. FLAGS
+The FLAGS segment contains all of the FLAGS the cpu can call.
+

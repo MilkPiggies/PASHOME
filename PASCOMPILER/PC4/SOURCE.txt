@@ -1,0 +1,19 @@
+//This is a test file
+
+_ThisIsAFunction() {
+end function /}
+notafunction
+_Another Functio() { }
+endoffile
+/}
+1
+
+_ThirdFunction()
+{
+testing
+
+testing 2
+/}
+ending
+
+ending

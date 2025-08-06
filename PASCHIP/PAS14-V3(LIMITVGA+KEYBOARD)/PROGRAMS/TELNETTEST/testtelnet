@@ -1,0 +1,144 @@
+code loop for getting char from telnet recv
+    each loop increment counter for store location
+    eg: 0 = A, 1 = B ... 5 = Z
+
+
+
+
+
+//SENDING
+put char on ??
+run TELSND
+
+
+
+//RECIEVING
+when recieving data from a client, you must
+ensure two things. firstly that the client has 
+formatted the command properly. instructions for
+formatting the command can be found in documentation.
+
+($/#) (ADDR) (OP)
+  1     16     8    =  25
+
+                             target(),real[]
+
+  first digit will be sent to   A (1) [8]
+  second string will be sent to C (16)[16]
+  third string will be sent to  B (8) [8]
+  //store or run command??
+
+  all together these will be sent to MRAM,
+  with the specified address.
+
+  //or all together these will be ran as a command??
+
+
+
+
+
+
+
+
+
+
+tell user ready for input - done
+interupt
+
+(print user input and store user input)
+
+go though process (op, addr/val, $/#)
+(when user inputs a digit, print digit out for user)
+(do cpu processing)
+ask user to run or more commands
+    if more commands, repeat process
+    else run commands sent to MRam
+
+
+
+addr/val needs 4 inputs, ([0x]1,2,3,4)  (0x0000)
+
+
+
+
+
+
+interupt
+wait for av to be = 1
+un-interupt
+
+
+telrecv (put char on X)
+
+check where pointer is
+    if 0 = put on A and store A in mem ($30)
+    if 1 = put on A and store A in mem ($31)
+    if 2 = put on A and store A in mem ($32)
+    if 3 = put on A and store A in mem ($33)
+
+(put $31 on A)
+(put $32 on B)
+(put A+B on C)
+
+(put $30 on A)
+(put $33 on B)
+
+
+//check where mram points to and store
+store $40 on X
+WR2-MRAM
+
+
+//add 1 to $40
+store $40 on A
+store 1 on B
+add A+B
+store A on $40
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wait for user to input something
+when input is detected, it uninterupts
+
+get user input, store user input in ram (ZADDR?)
+and print user input on telnet
+
+branch back to start and interupt
+
+
+
+//START
+NOP $  0x00
+
+//INTERUPT
+NOP $  0x00
+LDX $# 0x00
+INT $  0x00
+
+//WAIT
+NOP $  0x00
+
+//GET AND PRINT USER INPUT
+TELRECV $  0x00
+TELSEND $  0x00
+
+//BRANCH BACK TO :START
+NOP $  0x00
+BR $  0x00
+
+
+
+(ADD STORING IN MEMORY WITH THE USE OF ZADDR)
+if zaddr is above a certain value, go back to the start, eg fill 0x30 - 0x3F, when you hit 0x40, 
+revert to 0x30.

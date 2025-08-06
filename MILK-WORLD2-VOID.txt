@@ -1,0 +1,36 @@
+MILK-WORLD2-VOID
+
+TheBrokenScript
+PamsHarvestCraft2
+DoggyTalentNext
+Create
+ComputerCraft
+Mekanism
+DarkMist
+SCP: Ultimate
+Traveler's Backpack
+JEI
+Journey Map
+
+
+
+
+
+
+
+ORIGIN: Old server made for friends to play together around 2011. The group played 
+on this server for quite some time, having multiple cities, artistic builds and more.
+The server was whitelisted, so only that group of friends had access, Until one day, 
+something changed.
+
+The server had 2 Staff members in charge of keeping the server up and running, overall
+the group didint have many problems between eachother, They all mostly got along.
+
+(Eventually, an outsider will join the server undetected. they find an exploit to
+keep his name in the whitelist file, Preventing the server staff from removing him.
+He is only found after the members start noticing strange builds around the map, 
+causing the group to create seperate cities/factions, begining to not trust one another.)
+
+The intruder, once gaining full access to the server, was now able to manipulate the
+world, adding in entities that would watch the users. And every now and again, someone
+would dissapear, but not only in minecraft.

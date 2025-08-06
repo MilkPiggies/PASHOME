@@ -1,0 +1,204 @@
+### DRAW LINE ###
+
+
+
+#################
+#  !END = 0x0A  #
+#  !RET = 0x0C  # = STACK
+#  			    #
+#################
+
+
+
+#################################################################
+
+
+
+//SET_GLOBAL_BRANCHES
+NOP $  0x00
+
+	//WRITE !END
+	NOP $  0x00
+
+		//POINT STACK TO A
+		NOP $  0x00
+		LDY $# 0x0A
+		SSP $  0x00
+
+		//SEND !ENDY TO STACK
+		NOP $  0x00
+		LDA $# 0x00 (!ENDY) [00]
+		PHA $  0x00 (should be on 0x0A on stack)
+
+		//SEND !ENDX TO STACK
+		NOP $  0x00
+		LDA $# 0x43 (!ENDX) [43]
+		PHA $  0x00 (should be on 0x0B on stack)
+
+	//WRITE !RET
+	NOP $  0x00
+
+		//POINT STACK TO C (stack already pointed to C)
+		NOP $  0x00
+		LDY $# 0x0C
+		SSP $  0x00
+
+		//SEND !RETY TO STACK
+		NOP $  0x00
+		LDA $# 0x00 (!RETY) [00]
+		PHA $  0x00 (should be on 0x0C on stack)
+
+		//SEND !RETX TO STACK
+		NOP $  0x00
+		LDA $# 0x1C (!RETX) [1C]
+		PHA $  0x00 (should be on 0x0D on stack)
+
+
+
+#################################################################
+
+
+
+//INIT
+NOP $  0x00
+
+	//SET A TO 0
+	LDA $# 0x00
+	
+	//SET B TO 0
+	LDB $# 0x00
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+	
+	
+//START
+NOP $  0x00
+	
+	//clear (< / = / >) ?
+	
+	
+	
+//WRITE
+NOP $  0x00
+	
+	//SET Y TO '-'
+	LDY $# 0x2D (-)
+	
+		//X SHOULD ALREADY BE CORRECT VALUE
+	
+	//WRITE TO SEGDAT
+	SECHLOC $  0x00
+	
+
+	
+//SET_CHECK
+NOP $  0x00
+
+	//SET STACK POSITION TO !ENDY
+	LDY $# 0x0A 
+	SSP $  0x00		
+
+	//PULL @Y FROM STACK (!ENDY)	
+	PLA $  0x00
+
+	//TRANSFER A TO Y
+	TAY $  0x00
+
+	//SET STACK POSITION WITH ADDS TO !ENDX
+	SPP $  0x00
+	SPP $  0x00
+
+	//PULL @X FROM STACK (!ENDX)
+	PLA $  0x00
+
+	//TRANSFER A TO X
+	TAX $  0x00
+	
+	//SET BRANCH
+	SBRK $  0x00	
+	
+	
+	
+//CHECK
+NOP $  0x00
+
+	//LOAD 0x0A TO A
+	LDA $# 0x0A
+	
+	//COMPARE A AND B
+	CMP $  0x00			
+	
+	
+	
+//BRANCH IF EQUAL SPACING
+NOP $  0x00
+
+	//BRANCH IF EQUAL
+	BEQ $  0x00
+
+	
+	
+//X++
+NOP $  0x00
+
+	//SET A TO 1
+	LDA $# 0x01
+	
+	//ADD A + B
+	ADD $  0x00
+	
+	//TRANSFER A TO B
+	TAB $  0x00
+	
+	//TRANSFER B TO X
+	TBX $  0x00
+	
+	
+
+//SET_RET
+NOP $  0x00
+
+	//SET STACK POSITION TO !RETY
+	LDY $# 0x0C 
+	SSP $  0x00		
+
+	//PULL @Y FROM STACK (!RETY)	
+	PLA $  0x00
+
+	//TRANSFER A TO Y
+	TAY $  0x00
+
+	//SET STACK POSITION WITH ADDS TO !RETX
+	SPP $  0x00
+	SPP $  0x00
+
+	//PULL @X FROM STACK (!RETX)
+	PLA $  0x00
+
+	//TRANSFER A TO X
+	TAX $  0x00
+	
+	//SET BRANCH
+	SBRK $  0x00
+	
+
+
+//GOTO_RET
+NOP $  0x00
+	
+	//TRANSFER B TO X
+	TBX $  0x00
+	
+	//BRANCH
+	BR $  0x00
+
+
+
+//END
+NOP $  0x00
+LDX $# 0x00
+INT $  0x00

@@ -1,0 +1,372 @@
+### DRAW LINE "-" ###
+
+
+set branch address? 
+	when a branch is needed, atleast for exit, we grab that value from stack.
+
+	first branch should be for exiting the function if @B is = to 0x0A on @A
+
+	@B should always match @Y
+
+	@Y is needed for setting branch, so @Y should be backed up, but @B should contain value on @Y'
+
+	@X should always be (0x04)? for first line position
+
+
+
+----------------------------------------------------------------------------------------------------------
+test
+print input:  on 3rd line (with a space at the end)
+interupt and wait for user input + enter.
+
+
+
+set X to correct address for (input: )
+
+get X from ram?
+set Y to 'I'
+write to vgadata
+send X to B
+set A to 1
+add A and B
+send A to X
+send X to ram?
+
+loop back to (get X from ram?)
+
+
+
+
+
+
+
+
+
+
+
+
+#############################
+#							#
+### RAM USED: 0x03 - 0x0C ###
+#							#
+#	$00 =					#						
+#	$01 =					#
+#	$02 = 					#
+#   $03 = @X				#
+#   $04 = @Y				#
+#   $05 = 					#
+#	$06 = 'I'				#	
+#	$07 = 'N'				#
+#	$08 = 'P'				#
+#	$09 = 'U'				#
+#	$0A = 'T'				#
+#	$0B	= ':'				#
+#	$0C = ' '				#
+#							#
+#############################
+
+
+//INITIALIZE
+NOP $  0x00
+
+	//PUT STARTING ADDR ON $03
+	NOP $  0x00
+
+		//LOAD 0x07 ON A
+		LDA $# 0x28
+
+		//STORE A ON $03
+		STA $  0x03
+
+	//SET CHARS FOR "INPUT: "
+	NOP $  0x00
+
+		//PUT 'I' ON $06
+		NOP $  0x00
+
+			//LOAD 'I' TO A
+			LDA $# 0x49
+
+			//STORE A ON $06
+			STA $  0x06
+
+		//PUT 'N' ON $07
+		NOP $  0x00
+
+			//LOAD 'N' TO A
+			LDA $# 0x??
+
+			//STORE A ON $07
+			STA $  0x07
+
+		//PUT 'P' ON $08
+		NOP $  0x00
+
+			//LOAD 'P' TO A
+			LDA $# 0x??
+
+			//STORE A ON $08
+			STA $  0x08
+
+		//PUT 'U' ON $09
+		NOP $  0x00
+
+			//LOAD 'U' TO A
+			LDA $# 0x??
+
+			//STORE A ON $09
+			STA $  0x09
+
+		//PUT 'T' ON $0A
+		NOP $  0x00
+
+			//LOAD 'T' ON A
+			LDA $# 0x??
+
+			//STORE A ON $0A
+			STA $  0x0A
+
+		//PUT ':' ON $0B
+		NOP $  0x00
+
+			//LOAD ':' ON A
+			LDA $# 0x??
+
+			//STORE A ON $0B
+			STA $  0x0B
+
+		//PUT ' ' ON $C 
+		NOP $  0x00
+
+			//LOAD ' ' ON A 
+			LDA $# 0x??
+
+			//STORE A ON $0C
+			STA $  0x0C
+
+	//SET A TO 0
+	LDA $# 0x00
+	
+	//SET B TO 0
+	LDB $# 0x00
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+
+
+
+//SEND X+Y TO VGA
+SECHLOC $  0x00
+
+//ADD 1 TO X
+NOP $  0x00
+
+	//
+
+1000707
+30D
+
+
+
+
+
+
+
+
+
+
+
+//SET LOCATION FOR 'INPUT: ' AND USER INPUT
+I = 0x49
+N = 0x4E
+P = 0x50
+U = 0x55
+T = 0x54
+: = 0x3A
+  = 0x20
+
+
+
+
+
+
+
+
+
+
+//SET KEYBOARD LOCATION TO 
+LOAD 0x2A TO B
+SEKBLOC 
+
+
+
+//PUT 'INPUT: ' ON VGA
+NOP $  0x00
+
+	//SEND I
+	LOAD 0x28 TO X
+	LOAD 0x49 TO Y
+	SECHLOC
+
+	//SEND N
+	LOAD 0x29 TO X
+	LOAD 0x4E TO Y
+	SECHLOC
+
+	//SEND P
+	LOAD 0x2A TO X
+	LOAD 0x50 TO Y
+	SECHLOC
+
+	//SEND U
+	LOAD 0x2B TO X
+	LOAD 0x55 TO Y
+	SECHLOC
+
+	//SEND T
+	LOAD 0x2C TO X
+	LOAD 0x54 TO Y
+	SECHLOC
+
+	//SEND :
+	LOAD 0x2D TO X
+	LOAD 0x3A TO Y
+	SECHLOC
+
+	//SEND ' '
+	LOAD 0x2E TO X
+	LOAD 0x20 TO Y
+	SECHLOC
+	
+
+
+
+
+
+
+
+
+
+
+
+
+### get what the user typed and print it back on the 5th line? ###
+
+we already have the starting position (2F) on @B ($00)
+so all we need now is the ending position, grab that from GETKBLOC ($01)
+grab each character until the ending position, (2F, 30, 31... until end pos)
+put each in zeropage $30 and onwards. (2F on $30, 30 on $31)
+
+once all characters typed by user have been stored;
+put $30 on A
+check if A is end pos 
+if true: goto end
+else: CONTINUE
+
+
+
+
+
+
+SEGLOC = 0x40-0x49, 0x80-0x81, 0x100-0x103
+
+
+
+
+
+
+
+
+"boot" VGA display
+set color 
+set char loc for line
+set char's for line
+print "INPUT: "
+point kbloc to segloc after "INPUT: "
+store kbloc to $??
+wait for user input
+after user continues (uninterupts); 
+	\/\/\/\/DS
+
+
+
+
+
+
+
+:START
+load 30 on A 
+store A on Z
+
+//MUST BE DONE BEFORE USER INPUT
+GECHLOC
+store Y on $
+
+
+
+:RETURN
+load $00 on A
+load $01 on B
+compare A and B (if equal: END / else: CONTINUE)
+
+
+:CONTINUE
+TGLZADDR
+load $Z on Y
+TGLZADDR 
+
+load $02 on X
+SECHLOC
+
+load $00 on A
+load 0x01 on B
+add A and B
+store A on $00
+
+load Z to A
+add A and B 
+store A on Z
+
+transfer X to A 
+add A and B 
+store A on $02
+
+GOTO RETURN
+
+
+:END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### redo ###
+point @Y towards correct vga address
+put $30 on @Y
+SECHLOC
+
+point @Y towards correct vga address
+put $31 on @Y
+SECHLOC
+
+again and again, but keep track of position;
+starting position (2A) and ending position (??) are to be
+saved on $00 and $01. we reuse them to check if we have reached
+the end of the "word".
+
+

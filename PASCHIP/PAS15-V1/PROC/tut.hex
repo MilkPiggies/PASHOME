@@ -1,0 +1,13 @@
+fill with hex that prints:
+
+this file should be loaded onto bank 0 and ran for instructions
+
+1a. Load proc1conf.hex to bank 3
+1b. Load procs.hex to bank 2
+1c. Load procmng.hex to bank 1
+
+2a. Load & Run bank 3 (FF)
+2b. Load bank 2 (FF)
+2c. Load bank 1 (B8)
+
+3. Run

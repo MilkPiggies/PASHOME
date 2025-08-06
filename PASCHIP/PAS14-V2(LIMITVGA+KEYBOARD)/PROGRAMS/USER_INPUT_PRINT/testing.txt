@@ -1,0 +1,178 @@
+### DRAW LINE "-" ###
+
+
+set branch address? 
+	when a branch is needed, atleast for exit, we grab that value from stack.
+
+	first branch should be for exiting the function if @B is = to 0x0A on @A
+
+	@B should always match @Y
+
+	@Y is needed for setting branch, so @Y should be backed up, but @B should contain value on @Y'
+
+	@X should always be (0x04)? for first line position
+
+
+
+###START###
+
+//INIT
+
+//SET BRANCHES??
+
+//MAIN
+
+	
+
+
+
+
+set global branches
+initialize
+
+main
+ set exit branch (get exit branch from stack)
+ check if B = 10  <-- exit branch
+
+
+
+continue
+
+
+
+add
+ load 1 to A
+ add A + B
+ 
+
+
+sync
+ transfer B to Y 
+
+
+
+draw
+
+
+
+return
+
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//SET BRANCH
+	
+	SBRK $  0x00
+
+//INIT
+NOP $  0x00
+
+	//SET A TO 0
+	LDA $# 0x00
+	
+	//SET B TO 0
+	LDB $# 0x00
+	
+	//SET X TO 0
+	LDX $# 0x00
+	
+	//SET Y TO 0
+	LDY $# 0x00
+
+
+
+//SEGLOC09
+NOP $  0x00
+	
+	//SET Y TO 1
+	LDY $# 0x01
+
+	::SSLLOOP
+	NOP $  0x00
+
+	//SET SEG LOC
+	SSL $  0x00
+
+	//ADD 1 TO B
+	NOP $  0x00
+	
+		//SET A TO 1
+		LDA $# 0x01
+
+		//ADD A AND B
+		ADD $  0x00
+
+		//TRANSFER A TO B
+		TAB $  0x00
+
+	//TRANSFER B TO X
+	NOP $  0x00 
+	TBX $  0x00
+
+	//CHECK IF B = 0x0A
+	NOP $  0x00
+		
+		//SET A TO 0x0A
+		LDA $# 0x0A
+
+		//COMPARE A AND B
+		CMP $  0x00
+
+		//BRANCH IF A AND B ARE EQUAL
+		BEQ $  0x00
+	
+	(goto ::SSLLOOP)
+
+	
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+:start
+Y = 1
+sesegloc
+X + 1 
+check if X = 0x0A
+	goto :here
+else continue
+
+goto :start
