@@ -138,7 +138,7 @@ int main() {
 			fprintf(output_file, "NULL $# 0000\n");
 			strcpy(g[b], label);
 			o[b] = a;
-			printf("%s: %d\n", g[b], o[b]);
+			printf("label %s found at: %d\n", g[b], o[b]);
 			
 			//NOT WORKING-UNUSED
 				//u[b] = *label;		//see above, correct uses strcpy.
