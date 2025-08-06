@@ -33,9 +33,9 @@ char vala[4];
 
 // include a file that find how many lines there are
 
-#include "oplist.h"				//Holds list of true commands
-#include "readAndPrintLine.h"	//Gets the current line, puts on e
-#include "getop.h"				//Gets the pos of each true command
+#include "extFuncs/oplist.h"				//Holds list of true commands
+#include "extFuncs/readAndPrintLine.h"	//Gets the current line, puts on e
+#include "extFuncs/getop.h"				//Gets the pos of each true command
 
 
 
@@ -115,6 +115,18 @@ void remove_trailing_space(char *str) {
     }
 }
 
+void removeChar(char *str, char c) {
+    char *src = str, *dst = str;
+    while (*src) {
+        *dst = *src;
+        if (*dst != c) {
+            dst++;
+        }
+        src++;
+    }
+    *dst = '\0';
+}
+
 
 
 //
@@ -124,7 +136,7 @@ void remove_trailing_space(char *str) {
 int main() 
 {
 	
-	FILE *f2w = fopen("out.txt", "w");
+	FILE *f2w = fopen("OUTPUT.PAS", "w");
 	
 	op = 2;			// Test op value
 	
@@ -236,17 +248,18 @@ daend:
 			//remove_leading_spaces(fop);		// Didn't work. Fix or leave.
 			//remove_trailing_space(vali);
 			//remove_trailing_space(vala);	
+			removeChar(vali, ' ');
+			removeChar(vala, ' ');
 			
 			
 			// Below should fprintf eop, as in da/vali-vala/op
 			if (da == 0) {
-				printf("out: %s\b%02x\n", vali, fop);
+				printf("out: %s%02x\n", vali, fop);
 				fprintf(f2w, "%s%02x\n", vali, fop);
 			}
 			
 			if (da == 1) {
-				printf("out: 1%s\b%02x\n", vala, fop);
-				//fprintf(f2w, "1%s%02x\n", vala, fop);
+				printf("out: 1%s%02x\n", vala, fop);				
 				fprintf(f2w, "1%s%02x\n", vala, fop);
 			}
 			
