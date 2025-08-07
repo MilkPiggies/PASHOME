@@ -68,6 +68,8 @@ int main() {
 
 	int line_number = 1;
     char c;
+    
+    int gtc = 0;
 	
 
 	//while ((c = fgetc(source_file)) != EOF) {
@@ -138,94 +140,89 @@ int main() {
 			fprintf(output_file, "NULL $# 0000\n");
 			strcpy(g[b], label);
 			o[b] = a;
+			o[b] = o[b] + gtc;
 			printf("label %s found at: %d\n", g[b], o[b]);
-			
+			b++;
 			//NOT WORKING-UNUSED
 				//u[b] = *label;		//see above, correct uses strcpy.
 				//fprintf(output_file, "%s", g[b]);
-			b++;
+			
 
 
-		
-		
+
+		// goto
+		} else if (strstr(line, "goto")) {
+			
+			// goto if
+			if (strstr(line, "if")) {
+				printf("testgotoif ");
+				w = 1;
+				
+gotoloop0:
+	
+				sscanf(line, "goto if %5s", &label);
+				if (strcmp(g[w], label) == 0) {
+					printf("goto if found at %d: %s\n",	o[w], g[w]);
+					// what kind of branch? 
+					// where branch to?
+					fprintf(output_file, "testgotoif0\n");
+					fprintf(output_file, "testgotoif1\n");
+					gtc++;
+					gtc++;
+					goto gotoexit;
+				}
+				w++;
+				goto gotoloop0;
+			
+			
+			
+			
+			
+			// goto only
+			} else {
+				printf("testgoto ");
+				w = 1;
+				
+				
+gotoloop1:
+	
+			
+				sscanf(line, "goto %5s", &label);
+				if (strcmp(g[w], label) == 0) {
+					printf("goto found at %d: %s\n", o[w], g[w]);
+					// whehre branch to?
+					fprintf(output_file, "testgoto0\n");
+					fprintf(output_file, "testgoto1\n");
+					gtc++;
+					gtc++;
+					goto gotoexit;
+				}
+				w++;
+				goto gotoloop1;
+				
+				
+			}
+			
+				
+				
+
+
+gotoexit:			
+	continue;			
+				
+		} // else if {
 		
 		// depending on what the label is, compare it to g[b] until they
 		// match, then get b and get the matching o[b] for the offset
-		
-		
-		// goto	if / goto
-		} else if (strstr(line, "goto")) {
-			
-			// goto	if
-			if (strstr(line, "if")) {
-				//printf("testgotoif\n"); 	// here for goto if
-				// get ready to write to output file
-				//														// THIS!!!
-				// what kind of branch?
-				// where do we branch? (B??)
-				// 
-				w = 1;
-				
-loop0:
-				sscanf(line, "goto if %5s", &label);
-				//printf("%d: %s\n", b, label);
-				if (strcmp(g[w], label) == 0) {
-					printf("goto if found at %d: %s\n", o[w], g[w]);
-					// what kind of branch?
-					goto exit;
-				}
-				w++;
-				goto loop0;
-							
-				
-			
-			// goto	
-			} else {
-				//printf("testgoto\n");		// here for goto
-				// get ready to write to output file
-				// 
-				// where do we branch? (BR)
-				//
-				w = 1;
-	
-loop1:						
-				sscanf(line, "goto %5s", &label);
-				//printf("%d: %s\n", b, label);
-				if (strcmp(g[w], label) == 0) {
-					printf("goto found at %d: %s\n", o[w], g[w]);
-					// branch format is below
-					printf("translated addr: %04X\n", o[w]);
-					
-					
-					// JUST USE BR, BRANCH ON WHEREVER WE ARE.
-					// BR $# 0000
-					
-					
-					// what memory bank are we branching on?
-					// for conditional branches, its automatic.
-					
-					//set x location for branch
-					//set branch location?  (see above)
-					//branch
-					
-					// so location is stored on according branch, then 
-					
-					goto exit;
-				}
-				w++;
-				goto loop1;				
 
-				
-							
-			}
-			
-exit:
-continue;
-			
-		} // else if {
 		
-		 
-
+		
+		
+		
+		
+		
+		
+		
 		
 		
 

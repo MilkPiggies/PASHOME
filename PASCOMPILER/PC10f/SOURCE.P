@@ -11,5 +11,11 @@ TIE $# 0000
 LDF $ 0420
 NULL $# 0000
 NULL $# 0000
+testgoto0
+testgoto1
 NULL $# 0000
+testgotoif0
+testgotoif1
 NULL $# 0000
+testgoto0
+testgoto1
