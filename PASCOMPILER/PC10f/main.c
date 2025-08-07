@@ -150,6 +150,10 @@ int main() {
 
 
 
+
+
+
+
 		// goto
 		} else if (strstr(line, "goto")) {
 			
@@ -165,12 +169,23 @@ gotoloop0:
 					printf("goto if found at %d: %s\n",	o[w], g[w]);
 					// what kind of branch? 
 					// where branch to?
+					
+					//
+					
+					// print stuff (lines written)
 					fprintf(output_file, "testgotoif0\n");
 					fprintf(output_file, "testgotoif1\n");
+					
+					// add according lines written
 					gtc++;
 					gtc++;
+					// more?
+					
+					// exit this (if else)
 					goto gotoexit;
 				}
+				
+				// if not equal, go back && add 1 to w
 				w++;
 				goto gotoloop0;
 			
@@ -181,57 +196,52 @@ gotoloop0:
 			// goto only
 			} else {
 				printf("testgoto ");
-				w = 1;
-				
+				w = 1;	
 				
 gotoloop1:
-	
 			
 				sscanf(line, "goto %5s", &label);
 				if (strcmp(g[w], label) == 0) {
 					printf("goto found at %d: %s\n", o[w], g[w]);
-					// whehre branch to?
+					// where branch to?
+					
+					//
+					
+					// print stuff (lines written)
 					fprintf(output_file, "testgoto0\n");
 					fprintf(output_file, "testgoto1\n");
+					
+					// add according lines written
 					gtc++;
 					gtc++;
+					// more?
+					
+					// exit this (if else)
 					goto gotoexit;
 				}
+				
+				// if not equal, go back && add 1 to w
 				w++;
 				goto gotoloop1;
 				
 				
 			}
 			
-				
-				
-
-
 gotoexit:			
-	continue;			
+	continue;	
+	
+	
+	
+	
+	
+	
+	
+			
 				
 		} // else if {
 		
-		// depending on what the label is, compare it to g[b] until they
-		// match, then get b and get the matching o[b] for the offset
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-			
-        // heres where we put other commands.
-        // } else if {
-    	//
-		// }
-        
         
         a++;	// tracks output file location
         		// need to change this to hex
