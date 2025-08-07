@@ -239,6 +239,7 @@ gotoexit:
 			
 				
 		} // else if {
+			// Maybe test this with a simple word (penis)?
 		
 
 
