@@ -1,0 +1,71 @@
+		} else if (strstr(line, "goto")) {
+			
+			// goto	if
+			if (strstr(line, "if")) {
+				//printf("testgotoif\n"); 	// here for goto if
+				// get ready to write to output file
+				//														// THIS!!!
+				// what kind of branch?
+				// where do we branch? (B??)
+				// 
+				w = 1;
+				
+loop0:
+				sscanf(line, "goto if %5s", &label);
+				//printf("%d: %s\n", b, label);
+				if (strcmp(g[w], label) == 0) {
+					printf("goto if found at %d: %s\n", o[w], g[w]);
+					// what kind of branch?\
+					// where branch to?\
+					goto exit;
+				}
+				w++;
+				goto loop0;
+							
+				
+			
+			// goto	
+			} else {
+				//printf("testgoto\n");		// here for goto
+				// get ready to write to output file
+				// 
+				// where do we branch? (BR)
+				//
+				w = 1;
+	
+loop1:						
+				sscanf(line, "goto %5s", &label);
+				//printf("%d: %s\n", b, label);
+				if (strcmp(g[w], label) == 0) {
+					printf("goto found at %d: %s\n", o[w], g[w]);
+					// branch format is below
+					printf("translated addr: %04X\n", o[w]);
+					
+					
+					// JUST USE BR, BRANCH ON WHEREVER WE ARE.
+					// BR $# 0000
+					
+					
+					// what memory bank are we branching on?
+					// for conditional branches, its automatic.
+					
+					//set x location for branch
+					//set branch location?  (see above)
+					//branch
+					
+					// so location is stored on according branch, then 
+					
+					goto exit;
+				}
+				w++;
+				goto loop1;				
+
+				
+							
+			}
+	
+
+
+		
+exit:
+//continue;

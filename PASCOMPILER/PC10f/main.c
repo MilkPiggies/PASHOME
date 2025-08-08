@@ -209,7 +209,15 @@ gotoloop1:
 					
 					// print stuff (lines written)
 					fprintf(output_file, "testgoto0\n");
+					//fprintf LDX $# (label location)
+					
 					fprintf(output_file, "testgoto1\n");
+					//fprintf SBRM $# 0000
+					//fprintf SBRK $# 0000
+					
+					//fprintf BR $# 0000
+					
+					
 					
 					// add according lines written
 					gtc++;
@@ -256,5 +264,5 @@ gotoexit:
 	printf("\n\n");
     printf("Translation complete. Output written to SOURCE.P.\n");
     //printf("test %d", o[1]);
-    return 0;
+    return 2;
 }
