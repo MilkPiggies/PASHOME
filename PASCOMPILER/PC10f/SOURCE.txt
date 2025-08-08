@@ -2,6 +2,7 @@ put(@A, #0069)
 mov(@A, #000B)
 put(@A, #0420)
 mov(@X, #000Y)
+penis
 put(@B, #0666)
 :label
 mov(@X, #000J)
@@ -13,6 +14,7 @@ get(@F, #0420)
 nop
 goto 5letr
 nop
-goto if label
+goto if <= label
 :lstts
 goto lstts
+penis

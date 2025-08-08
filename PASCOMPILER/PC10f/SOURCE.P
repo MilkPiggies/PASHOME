@@ -11,11 +11,17 @@ TIE $# 0000
 LDF $ 0420
 NULL $# 0000
 NULL $# 0000
-testgoto0
-testgoto1
+LDX $# 000d
+SBRM $# 0000
+SBRK $# 0000
+BR $# 0000
 NULL $# 0000
-testgotoif0
-testgotoif1
+LDX $# 0007
+SBRM $# 0000
+SBRK $# 0000
+BSE $# 0000
 NULL $# 0000
-testgoto0
-testgoto1
+LDX $# 0018
+SBRM $# 0000
+SBRK $# 0000
+BR $# 0000

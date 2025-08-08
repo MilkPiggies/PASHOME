@@ -1,0 +1,43 @@
+
+
+
+
+
+GOTO IF / CONDITIONAL BRANCHES
+BNN !N (branch if NOT negative)
+BNG  N (branch if negative)
+BNZ !Z (branch if NOT zero)
+BZE  Z (branch if zero) 
+BNO !O (branch if NOT overflown)
+BOV  O (branch if overflown)
+BNC !C (branch if NOT carrying)
+BCA  C (branch if carrying)
+BBE >= (branch if BIGGER or EQUAL)
+BSE <= (branch if SMALLER or EQUAL)
+BCC !> (branch if NOT bigger)
+BCS  > (branch if bigger)
+BNE != (branch if NOT equal) 
+BEQ  = (branch if equal)
+BPL !< (branch if NOT smaller)
+BMI  < (branch if smaller)
+
+
+
+
+
+//fprintf LDX $# (label location)
+					fprintf(output_file, "LDX $# %04x\n", o[w]);					
+					//fprintf SBRM $# 0000
+					fprintf(output_file, "SBRM $# 0000\n");					
+					//fprintf SBRK $# 0000
+					fprintf(output_file, "SBRK $# 0000\n");					
+					//fprintf BR $# 0000
+					fprintf(output_file, "%s $# 0000\n", fbr);
+
+
+
+
+
+
+
+
