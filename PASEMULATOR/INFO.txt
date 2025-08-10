@@ -1,0 +1,17 @@
+main registers
+
+
+
+//MAIN
+BIOS BOOT
+
+LAUNCH KERNEL
+
+OPEN SHELL
+
+
+
+
+Ignore bios  and shell for the time being, firstly
+start making the shell.  stay in this loop  until
+the user exits  or  a program  crashes.
